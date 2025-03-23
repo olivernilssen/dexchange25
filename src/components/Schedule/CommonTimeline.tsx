@@ -38,7 +38,7 @@ export default function CommonTimeline({ day, commonBreaks, onSessionClick }: Co
   
   return (
     <div className="mb-6">
-      <h3 className="font-medium text-[#081079] mb-3">Felles sesjoner</h3>
+      <h3 className="font-medium text-[#081079] mb-3">Felles sesjoner i </h3>
       
       <div className="relative">
         {/* Create a timeline line */}

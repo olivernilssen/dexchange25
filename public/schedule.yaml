@@ -165,7 +165,7 @@ schedule:
               ingress: 
               description: |
                 Nytt og nyttig i vår leveranseplattform. Og litt om hva vi kommer til å jobbe med framover. Metoder og muligheter rundt vår leveransemodell.
-              speaker: Team Leveranse, Team PLattform og Team DDE
+              speaker: Team Leveranse, Team Plattform og Team DDE
               tag: K8s, Leveranse
             - start: 2025-04-09:15.00
               end: 2025-04-09:16.00

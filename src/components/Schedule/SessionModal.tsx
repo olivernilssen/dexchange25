@@ -123,24 +123,24 @@ export default function SessionModal({ session, onClose }: SessionModalProps) {
           {isWorkshop && (
             <div className="mb-4 p-3 bg-[#fff0f0] border border-[#e05252] rounded-md">
               <h3 className="text-sm font-bold text-[#e05252] flex items-center">
-                <span className="mr-2">👥</span> Interactive Workshop
+                <span className="mr-2">👥</span> Interaktiv Økt
               </h3>
               <p className="text-[#b73939] text-sm">
-                This is a hands-on workshop session. Come prepared to participate!
+                Dette er en praktisk workshop-økt. Kom forberedt til å delta!
               </p>
             </div>
           )}
           
           {session.ingress && (
             <div className="mb-4">
-              <h3 className="text-sm font-semibold text-gray-500">Overview</h3>
+              <h3 className="text-sm font-semibold text-gray-500">Ingress</h3>
               <p className="text-[#333333] italic">{session.ingress}</p>
             </div>
           )}
           
           {session.description && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500">Description</h3>
+              <h3 className="text-sm font-semibold text-gray-500">Beskrivelse</h3>
               <div className="text-[#333333]">
                 {session.description.split('\n').map((paragraph, i) => (
                   <p key={i} className="mt-2">{paragraph.trim()}</p>

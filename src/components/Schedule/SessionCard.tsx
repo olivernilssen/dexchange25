@@ -15,14 +15,14 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
   // Determine if session is a workshop
   const isWorkshop = session.kind === 'workshop';
   
-  // More distinctive styling
+  // Base card styling
   const cardStyles = isWorkshop 
     ? 'border-l-4 border-[#e05252] bg-[#fff0f0]' // Stronger red theme for workshops
     : 'border-l-4 border-[#3949ab] bg-[#f0f4ff]'; // Stronger blue theme for speeches
   
   const iconSymbol = isWorkshop 
-    ? '🔧' // Workshop icon (wrench)
-    : '🎤'; // Speech icon (microphone)
+    ? '🔧' 
+    : '🎤';
   
   return (
     <div 
@@ -76,7 +76,7 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
       {/* Duration indicator for workshops */}
       {isWorkshop && (
         <div className="mt-2 text-xs text-[#e05252] font-medium">
-          Interactive session • {calculateDuration(session.start, session.end)} mins
+          Interaktiv økt • {calculateDuration(session.start, session.end)} min
         </div>
       )}
     </div>
