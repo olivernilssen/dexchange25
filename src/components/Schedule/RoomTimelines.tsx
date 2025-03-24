@@ -31,7 +31,7 @@ export default function RoomTimelines({ day, roomBreaks, onSessionClick, isSessi
           {track.sessions && track.sessions.length > 0 ? (
             <div className="mt-2 relative">
               {/* Create a timeline line */}
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8991cd] opacity-20"></div>
+              {/* <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8991cd] opacity-20"></div> */}
               
               <RoomTimelineItems
                 sessions={track.sessions}
@@ -81,7 +81,7 @@ function RoomTimelineItems({ sessions, breaks, room, onSessionClick, isSessionCo
   allItems.sort((a, b) => a.startTime - b.startTime);
   
   return (
-    <div className="space-y-3 pl-8 pt-2 pb-2">
+    <div className="space-y-3 pl-1 pt-2 pb-2">
       {allItems.map((item, index) => (
         item.isBreak ? (
           <BreakCard 

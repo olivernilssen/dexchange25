@@ -38,9 +38,9 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
       />
       
       {/* Position indicator dot with type-specific color */}
-      <div className={`absolute -left-8 top-1/2 transform -translate-y-1/2 w-4 h-4 rounded-full ${
+      {/* <div className={`absolute -left-8 top-1/2 transform -translate-y-1/2 w-4 h-4 rounded-full ${
         isWorkshop ? 'bg-[#e05252]' : 'bg-[#3949ab]'
-      } border-2 border-white`}></div>
+      } border-2 border-white`}></div> */}
       
       {/* Add a distinctive pattern stripe for workshops */}
       {isWorkshop && (

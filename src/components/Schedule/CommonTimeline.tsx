@@ -43,9 +43,9 @@ export default function CommonTimeline({ day, commonBreaks, onSessionClick, isSe
       
       <div className="relative">
         {/* Create a timeline line */}
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8991cd] opacity-20"></div>
+        {/* <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#8991cd] opacity-20"></div> */}
         
-        <div className="space-y-3 pl-8 pt-2 pb-2">
+        <div className="space-y-3 pl-1 pt-2 pb-2">
           {timelineItems.map((item, index) => (
             item.isBreak ? (
               <BreakCard 
