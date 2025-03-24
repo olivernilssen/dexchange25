@@ -284,24 +284,24 @@ schedule:
                 TBA
               speaker: Stine Nyheim
               tag: Produkt, Design
-    - start: 2025-04-10:08.45
-      end: 2025-04-10:15.30
+    - start: 2025-04-10T08:45
+      end: 2025-04-10T15:30
       breaks:
-        - start: 2025-04-10:09.40
-          end: 2025-04-10:10.00
+        - start: 2025-04-10T09:40
+          end: 2025-04-10T10:00
           title: Pause 20 minutter, omrigging
-        - start: 2025-04-10:11:45
-          end: 2025-04-10:12.30
+        - start: 2025-04-10T11:45
+          end: 2025-04-10T12:30
           title: Lunsjpause, 45 minutter
-        - start: 2025-04-10:14.15
-          end: 2025-04-10:14.35
+        - start: 2025-04-10T14:15
+          end: 2025-04-10T14:35
           title: Pause 20 minutter, omrigging
-        - start: 2025-04-10:15.30
-          end: 2025-04-10:16.00
+        - start: 2025-04-10T15:30
+          end: 2025-04-10T16:00
           title: Hjemreise
       commonSessions:
-        - start: 2025-04-10:08.45
-          end: 2025-04-10:09.40
+        - start: 2025-04-10T08:45
+          end: 2025-04-10T09:40
           kind: speech
           title: Paneldebatt
           teams: 
@@ -310,8 +310,8 @@ schedule:
             Tema er TBA
           speaker: Sverre og Hanne 
           tag: Felles
-        - start: 2025-04-10:14.35
-          end: 2025-04-10:15.30
+        - start: 2025-04-10T14:35
+          end: 2025-04-10T15:30
           kind: speech
           title: Felles Locknote
           teams: 
@@ -324,8 +324,8 @@ schedule:
       tracks:
         - room: Storsal 1
           sessions:
-            - start: 2025-04-10:10.00
-              end: 2025-04-10:11.45
+            - start: 2025-04-10T10:00
+              end: 2025-04-10T11:45
               kind: workshop
               teams: 
               title: Sammen om en enklere hverdag
@@ -334,8 +334,8 @@ schedule:
                 Det er en mulighet for flere å kunne koble seg på og bidra med erfaringer og innspill. Vi former WS ut i fra hvor vi står etter Samkjøringsuka, så den kan omhandle alt fra visjonen, OKRs, strategiske valg mm - velkommen :)
               speaker: Agnete Enga og Line Krauss-Larsen 
               tag: strategi
-            - start: 2025-04-10:12.30
-              end: 2025-04-10:14.15
+            - start: 2025-04-10T12:30
+              end: 2025-04-10T14:15
               kind: workshop
               title: I natt jag drömde
               ingress: Sanntidsjournalen - nye verktøy
@@ -346,8 +346,8 @@ schedule:
               tag: Sammarbeid
         - room: Storsal 2
           sessions:
-            - start: 2025-04-10:10.00
-              end: 2025-04-10:11.45
+            - start: 2025-04-10T10:00
+              end: 2025-04-10T11:45
               kind: workshop
               teams: 
               title: KI-Verktøy
@@ -358,8 +358,8 @@ schedule:
                 Denne økten passer for alle.
               speaker: Hans Martin Cramer
               tag: KI, Teknologi
-            - start: 2025-04-10:12.30
-              end: 2025-04-10:14.15
+            - start: 2025-04-10T12:30
+              end: 2025-04-10T14:15
               kind: workshop
               title: GitHub CoPilot for utviklere
               ingress: 
@@ -369,8 +369,8 @@ schedule:
               tag: KI, Teknologi    
         - room: Storsal 3
           sessions:
-          - start: 2025-04-10:10.00
-            end: 2025-04-10:11.45
+          - start: 2025-04-10T10:00
+            end: 2025-04-10T11:45
             kind: workshop
             teams: 
             title: Testing av FrontEnd
@@ -382,8 +382,8 @@ schedule:
               Vise GUI (recorder) for å lage tester. 
             speaker: Martin Vassbotten
             tag: QA, Teknologi, Utvikling
-          - start: 2025-04-10:12.30
-            end: 2025-04-10:14.15
+          - start: 2025-04-10T12:30
+            end: 2025-04-10T14:15
             kind: workshop
             title: Finne problemet i høystakken - hvordan bruke verktøysettet tilgjengelig for å finne ut av feil og ytelsesproblemer
             ingress: En workshop hvor en ser på hvordan vi kan finne ut av feilsituasjoner og tregheter i Arena og tjenester med bruk av informasjonskildene og det verktøysettet vi har tilgjengelig.
@@ -394,8 +394,8 @@ schedule:
             tag: QA
         - room: The Social
           sessions:
-          - start: 2025-04-10:10.00
-            end: 2025-04-10:11.45
+          - start: 2025-04-10T10:00
+            end: 2025-04-10T11:45
             kind: workshop
             teams: 
             title: Bygg med Puls - i Kode
@@ -405,8 +405,8 @@ schedule:
               (Mer beskrivelse kommer)
             speaker: Team 
             tag: Teknologi, KI
-          - start: 2025-04-10:12.30
-            end: 2025-04-10:14.15
+          - start: 2025-04-10T12:30
+            end: 2025-04-10T14:15
             kind: workshop
             title: React Usage - "Skriv bedre React kode"
             ingress: Det ligger i menneskets natur å være optimistisk.
@@ -418,8 +418,8 @@ schedule:
             tag: Produkt
         - room: The Saltstraumen
           sessions:
-          - start: 2025-04-10:10.00
-            end: 2025-04-10:11.45
+          - start: 2025-04-10T10:00
+            end: 2025-04-10T11:45
             kind: workshop
             teams: 
             title: Bygg din egen AI-agent 🤖
@@ -428,8 +428,8 @@ schedule:
               Utforsk hvordan AI passer i ditt domene.
             speaker: Team assistent
             tag: Teknologi, KI
-          - start: 2025-04-10:12.30
-            end: 2025-04-10:14.15
+          - start: 2025-04-10T12:30
+            end: 2025-04-10T14:15
             kind: workshop
             title: Hvordan estimere effektivt - praktisk bruk av rutine og mal for estimering i DIPS
             ingress: Det ligger i menneskets natur å være optimistisk.
@@ -441,8 +441,8 @@ schedule:
             tag: Produkt
         - room: Salten
           sessions:
-          - start: 2025-04-10:10.00
-            end: 2025-04-10:11.45
+          - start: 2025-04-10T10:00
+            end: 2025-04-10T11:45
             kind: workshop
             teams: 
             title: Hvordan lykkes med workshops som gir resultater?
@@ -454,8 +454,8 @@ schedule:
               Alle som deltar får med seg en bok
             speaker: Linda Vik og Cathrine Aldorino
             tag: Sammarbeid, Produkt, Ekstern
-          - start: 2025-04-10:12.30
-            end: 2025-04-10:14.15
+          - start: 2025-04-10T12:30
+            end: 2025-04-10T14:15
             kind: workshop
             title: Verdien av det vi leverer - et produktverktøy
             ingress: Hvordan kan vi definere og konkretisere problemene man ønsker å løse bedre, og kommunisere verdien av det vi leverer?
