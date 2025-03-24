@@ -55,6 +55,21 @@ export default function ScheduleView({ scheduleData }: ScheduleViewProps) {
     setSelectedSession(null);
   };
 
+  const isSessionCompleted = (session: Session, currentTime: string | undefined): boolean => {
+    const now = currentTime
+      ? new Date(`${currentTime}`) // Append seconds to ensure proper parsing
+      : new Date();
+
+    if (isNaN(now.getTime())) {
+      console.error("Invalid debug time format. Expected format: YYYY-MM-DD:HH.MM");
+      return false;
+    }
+
+    const currentDay = scheduleData.schedule.days[activeDay];
+    const sessionEndTime = new Date(`${currentDay.date}T${session.end}`);
+    return now > sessionEndTime;
+  };
+
   const renderActiveDay = () => {
     if (!scheduleData.schedule.days[activeDay]) {
       return null;
@@ -119,6 +134,7 @@ export default function ScheduleView({ scheduleData }: ScheduleViewProps) {
           day={currentDay} 
           commonBreaks={commonBreaks} 
           onSessionClick={handleSessionClick} 
+          isSessionCompleted={(session) => isSessionCompleted(session, testCurrentTime)}
         />
         
         {/* Integrated timeline with breaks during room sessions */}
@@ -126,6 +142,7 @@ export default function ScheduleView({ scheduleData }: ScheduleViewProps) {
           day={currentDay} 
           roomBreaks={roomBreaks} 
           onSessionClick={handleSessionClick} 
+          isSessionCompleted={(session) => isSessionCompleted(session, testCurrentTime)}
         />
       </div>
     );
@@ -178,16 +195,21 @@ export default function ScheduleView({ scheduleData }: ScheduleViewProps) {
       
       {/* Main content - either day schedule or favorites */}
       {showFavorites ? (
-        <FavoritesView scheduleData={scheduleData} />
+        <FavoritesView 
+          scheduleData={scheduleData} 
+          isSessionCompleted={(session) => isSessionCompleted(session, testCurrentTime)} 
+        />
       ) : (
         <>
           {/* Next Sessions Button & Modal */}
-          <NextSessions
-            day={scheduleData.schedule.days[activeDay]}
-            dayIndex={activeDay}  // Pass the activeDay as dayIndex
-            onSessionClick={handleSessionClick}
-            currentTime={testCurrentTime}
-          />
+          <div className="mb-4">
+            <NextSessions
+              day={scheduleData.schedule.days[activeDay]}
+              dayIndex={activeDay}  // Pass the activeDay as dayIndex
+              onSessionClick={handleSessionClick}
+              currentTime={testCurrentTime} // Ensure a valid time is passed
+            />
+          </div>
           
           {/* Active day content */}
           {renderActiveDay()}

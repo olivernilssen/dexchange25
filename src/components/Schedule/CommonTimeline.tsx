@@ -7,9 +7,10 @@ interface CommonTimelineProps {
   day: Day;
   commonBreaks: any[];
   onSessionClick: (session: Session & { room?: string }) => void;
+  isSessionCompleted: (session: Session) => boolean;
 }
 
-export default function CommonTimeline({ day, commonBreaks, onSessionClick }: CommonTimelineProps) {
+export default function CommonTimeline({ day, commonBreaks, onSessionClick, isSessionCompleted }: CommonTimelineProps) {
   const hasCommonSessions = day.commonSessions && day.commonSessions.length > 0;
   const hasCommonBreaks = commonBreaks && commonBreaks.length > 0;
   
@@ -52,12 +53,17 @@ export default function CommonTimeline({ day, commonBreaks, onSessionClick }: Co
                 breakItem={item}
               />
             ) : (
-              <SessionCard 
-                  key={`common-session-${index}`}
+              <div key={`common-session-${index}`} className="session-item">
+                <SessionCard 
                   session={item}
                   onClick={onSessionClick}
                   isCommon={true} 
-                  dayIndex={0}              />
+                  dayIndex={0}              
+                />
+                {isSessionCompleted(item) && (
+                  <span className="text-green-500 ml-2">(Completed)</span>
+                )}
+              </div>
             )
           ))}
         </div>

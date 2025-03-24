@@ -7,9 +7,10 @@ interface RoomTimelinesProps {
   day: Day;
   roomBreaks: any[];
   onSessionClick: (session: Session & { room?: string }) => void;
+  isSessionCompleted: (session: Session) => boolean;
 }
 
-export default function RoomTimelines({ day, roomBreaks, onSessionClick }: RoomTimelinesProps) {
+export default function RoomTimelines({ day, roomBreaks, onSessionClick, isSessionCompleted }: RoomTimelinesProps) {
   if (!day.tracks || day.tracks.length === 0) {
     return null;
   }
@@ -37,6 +38,7 @@ export default function RoomTimelines({ day, roomBreaks, onSessionClick }: RoomT
                 breaks={breaks}
                 room={track.room}
                 onSessionClick={onSessionClick}
+                isSessionCompleted={isSessionCompleted}
               />
             </div>
           ) : (
@@ -53,9 +55,10 @@ interface RoomTimelineItemsProps {
   breaks: any[];
   room: string;
   onSessionClick: (session: Session & { room?: string }) => void;
+  isSessionCompleted: (session: Session) => boolean;
 }
 
-function RoomTimelineItems({ sessions, breaks, room, onSessionClick }: RoomTimelineItemsProps) {
+function RoomTimelineItems({ sessions, breaks, room, onSessionClick, isSessionCompleted }: RoomTimelineItemsProps) {
   // Create a combined array of sessions and breaks
   const allItems = [
     // Convert sessions to timeline items
@@ -90,7 +93,9 @@ function RoomTimelineItems({ sessions, breaks, room, onSessionClick }: RoomTimel
               key={`session-${index}`}
               session={item}
               onClick={onSessionClick} 
-              dayIndex={0}          />
+              dayIndex={0}          
+              isCompleted={isSessionCompleted(item)}
+          />
         )
       ))}
     </div>

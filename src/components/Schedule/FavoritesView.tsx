@@ -6,9 +6,10 @@ import SessionModal from './SessionModal';
 
 interface FavoritesViewProps {
   scheduleData: ScheduleData;
+  isSessionCompleted: (session: Session) => boolean;
 }
 
-export default function FavoritesView({ scheduleData }: FavoritesViewProps) {
+export default function FavoritesView({ scheduleData, isSessionCompleted }: FavoritesViewProps) {
   const { favorites } = useFavorites();
   const [selectedSession, setSelectedSession] = useState<(Session & { room?: string }) | null>(null);
 
@@ -112,6 +113,9 @@ export default function FavoritesView({ scheduleData }: FavoritesViewProps) {
                           onClick={handleSessionClick}
                           dayIndex={dayIndex}
                         />
+                        {isSessionCompleted(session) && (
+                          <span className="text-green-500 ml-2">(Completed)</span>
+                        )}
                       </div>
                     </div>
                   ))}

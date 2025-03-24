@@ -1,24 +1,39 @@
-// Helper function to format time from "2025-04-09:10.30" to "10:30"
-export function formatTime(timeString: string): string {
+// Export the formatTime function
+export function formatTime(timeString: string) {
   if (!timeString) return '';
+  
+  // Handle new ISO format (with T)
+  if (timeString.includes('T')) {
+    const parts = timeString.split('T');
+    if (parts.length === 2) {
+      return parts[1]; // Already in HH:MM format
+    }
+  }
+  
+  // Handle legacy format (with colon)
   const parts = timeString.split(':');
   if (parts.length < 2) return timeString;
   return parts[1].replace('.', ':');
 }
 
-// Get a comparable time value from a string
-export function getTimeFromString(timeString: string): number {
+// Export the getTimeFromString function
+export function getTimeFromString(timeString: string) {
   if (!timeString) return 0;
-  
   try {
+    // Handle new ISO format (with T)
+    if (timeString.includes('T')) {
+      const parts = timeString.split('T');
+      if (parts.length === 2) {
+        const [hours, minutes] = parts[1].split(':').map(Number);
+        return (hours * 60) + minutes;
+      }
+    }
+    
+    // Handle legacy format
     if (timeString.includes(':')) {
-      // Handle format like "2025-04-09:10.30" or "2025-04-09:17.15"
       const parts = timeString.split(':');
       if (parts.length >= 2) {
-        // Get the time part
         let timePart = parts[1];
-        
-        // Check if it contains a period (like 10.30) or a colon (like 10:30)
         let hours, minutes;
         
         if (timePart.includes('.')) {
@@ -26,22 +41,16 @@ export function getTimeFromString(timeString: string): number {
         } else if (timePart.includes(':')) {
           [hours, minutes] = timePart.split(':').map(Number);
         } else {
-          // If it's just a number like "17"
           hours = parseInt(timePart, 10);
           minutes = 0;
         }
         
-        // Safety check and convert to minutes
-        if (!isNaN(hours) && !isNaN(minutes)) {
-          return hours * 60 + minutes; // Convert to hours and minutes for comparison
-        }
+        return (hours * 60) + minutes;
       }
     }
-    
-    console.warn(`Failed to parse time: "${timeString}"`);
     return 0;
-  } catch (e) {
-    console.error(`Error parsing time string "${timeString}":`, e);
+  } catch (error) {
+    console.error(`Error parsing time string: ${timeString}`, error);
     return 0;
   }
 }

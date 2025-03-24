@@ -9,9 +9,10 @@ interface SessionCardProps {
   onClick: (session: Session & { room?: string }) => void;
   isCommon?: boolean;
   dayIndex: number;
+  isCompleted?: boolean;
 }
 
-export default function SessionCard({ session, onClick, isCommon = false, dayIndex }: SessionCardProps) {
+export default function SessionCard({ session, onClick, isCommon = false, dayIndex, isCompleted }: SessionCardProps) {
   // Determine if session is a workshop
   const isWorkshop = session.kind === 'workshop';
   
@@ -26,7 +27,7 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
   
   return (
     <div 
-      className={`relative p-3 rounded shadow ${cardStyles} cursor-pointer hover:shadow-md transition-all`}
+      className={`relative p-3 rounded shadow ${cardStyles} cursor-pointer hover:shadow-md transition-all ${isCompleted ? 'bg-green-100' : ''}`}
       onClick={() => onClick(session)}
     >
       {/* Favorite star button in the top-right corner */}
@@ -79,6 +80,11 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
           Interaktiv økt • {calculateDuration(session.start, session.end)} min
         </div>
       )}
+      
+      {/* Completed indicator */}
+      {isCompleted 
+        && <span className="text-green-500 text-xs">(Completed)</span>
+      }
     </div>
   );
 }

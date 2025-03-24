@@ -1,33 +1,33 @@
 schedule:  
     days:
     - date: 2025-04-09
-      start: 2025-04-09:08.00
-      end: 2025-04-09:17.00
+      start: 2025-04-09T08:00
+      end: 2025-04-09T17:00
       breaks:
-        - start: 2025-04-09:10.30
-          end: 2025-04-09:11.00
+        - start: 2025-04-09T10:30
+          end: 2025-04-09T11:00
           title: Registrering, Kaffe og mingling, 30 min til 1 time
-        - start: 2025-04-09:12.00
-          end: 2025-04-09:12.45
+        - start: 2025-04-09T12:00
+          end: 2025-04-09T12:45
           title: Lunsj 45 minutter
-        - start: 2025-04-09:13.30
-          end: 2025-04-09:13.45
+        - start: 2025-04-09T13:30
+          end: 2025-04-09T13:45
           title: Pause 15 minutter
-        - start: 2025-04-09:14.45
-          end: 2025-04-09:15.00
+        - start: 2025-04-09T14:45
+          end: 2025-04-09T15:00
           title: Pause 15 minutter
-        - start: 2025-04-09:16.00
-          end: 2025-04-09:16.15
+        - start: 2025-04-09T16:00
+          end: 2025-04-09T16:15
           title: Pause 15 minutter
-        - start: 2025-04-09:17.15
-          end: 2025-04-09:17.30
+        - start: 2025-04-09T17:15
+          end: 2025-04-09T17:30
           title: Kald servering starter, 15 min pause
-        - start: 2025-04-09:18.30
-          end: 2025-04-09:20.00
+        - start: 2025-04-09T18:30
+          end: 2025-04-09T20:00
           title: Middag
       commonSessions:
-        - start: 2025-04-09:11.00
-          end: 2025-04-09:11.15
+        - start: 2025-04-09T11:00
+          end: 2025-04-09T11:15
           title: Velkommen
           speaker: Thomas Smedsrud
           kind: speech
@@ -35,8 +35,8 @@ schedule:
           description: |
             Vi gleder oss til to dager med deling av kunnskap fra både interne og eksterne.
           tag: Felles
-        - start: 2025-04-09:11.15
-          end: 2025-04-09:12.00
+        - start: 2025-04-09T11:15
+          end: 2025-04-09T12:00
           kind: speech
           title: Keynote
           teams: 
@@ -46,8 +46,8 @@ schedule:
             TBA
           speaker: Christin Gorman
           tag: Felles
-        - start: 2025-04-09:12.45
-          end: 2025-04-09:13.30
+        - start: 2025-04-09T12:45
+          end: 2025-04-09T13:30
           kind: speech
           title: | 
             Felles sesjon TBA
@@ -58,8 +58,8 @@ schedule:
           description: | 
             Felles sesjon TBA
           tag: Felles
-        - start: 2025-04-09:17.30
-          end: 2025-04-09:18.30
+        - start: 2025-04-09T17:30
+          end: 2025-04-09T18:30
           kind: speech
           title: Foredrag om KI TBA
           teams: 
@@ -71,8 +71,8 @@ schedule:
       tracks:
         - room: Arena
           sessions:
-            - start: 2025-04-09:13.45
-              end: 2025-04-09:14.15
+            - start: 2025-04-09T13:45
+              end: 2025-04-09T14:15
               kind: speech
               title: Prompt engineering for folk flest
               teams: 
@@ -86,8 +86,8 @@ schedule:
                 Dette legger til rette for bedre ressursutnyttelse, reduserer tid brukt på feilretting og styrker en felles kultur for innovasjon og kontinuerlig læring.
               speaker: Bjørn Fjukstad
               tag: KI, Teknologi              
-            - start: 2025-04-09:14.15
-              end: 2025-04-09:14.45
+            - start: 2025-04-09T14:15
+              end: 2025-04-09T14:45
               kind: speech
               title: Fra null til hundre med nytt produkt
               teams: 
@@ -100,8 +100,8 @@ schedule:
                 Mange er nysgjerrige på denne reisen, og jo mer vi deler, jo mer innsikt organisasjonen får, jo mer forståelse og good will kan vi skape rundt de.
               speaker: Team Web
               tag: Web
-            - start: 2025-04-09:15.00
-              end: 2025-04-09:15.30              
+            - start: 2025-04-09T15:00
+              end: 2025-04-09T15:30              
               kind: speech
               title: Web i 2025
               teams: 
@@ -111,8 +111,8 @@ schedule:
                 Vi tar en titt på landskapet til web utvikling i 2025 og reflekterer rundt hvordan vi har endt opp der vi er i dag.
               speaker: Birk B. Eidsvik
               tag: Web, Teknologi
-            - start: 2025-04-09:15.30
-              end: 2025-04-09:16.00
+            - start: 2025-04-09T15:30
+              end: 2025-04-09T16:00
               kind: speech
               title: Fremtidens verktøy for helsevesenet
               teams: 
@@ -121,8 +121,8 @@ schedule:
                 Jeg ønsker å utforske mulighetsrommet og inspirere til nye ideer om hvordan vi, sammen med andre aktører, kan bruke AI til å utvikle de beste mulige løsningene for pasienter i Norge – både gjennom det DIPS leverer og ved å legge til rette for innovasjon i hele økosystemet.
               speaker: Petter Pettersen
               tag: KI, Teknologi
-            - start: 2025-04-09:16.15
-              end: 2025-04-09:16.45
+            - start: 2025-04-09T16:15
+              end: 2025-04-09T16:45
               kind: speech
               title: Fra produkt-idé til implementering
               teams: 
@@ -132,8 +132,8 @@ schedule:
                 Med ambisjon om å være verdensledende innen EPJ må vi utnytte vårt fortrinn der vår samlede kompetanse innen utvikling, design og helsefag gir oss et unikt utgangspunkt.
               speaker: Anne Gromsrud
               tag: Brukervennlighet, Sammarbeid  
-            - start: 2025-04-09:16.45
-              end: 2025-04-09:17.15
+            - start: 2025-04-09T16:45
+              end: 2025-04-09T17:15
               kind: speech
               title: I Natt jag drömde
               teams: 
@@ -146,8 +146,8 @@ schedule:
               tag: Sammarbeid
         - room: Kantina
           sessions:
-            - start: 2025-04-09:13.45
-              end: 2025-04-09:14.15
+            - start: 2025-04-09T13:45
+              end: 2025-04-09T14:15
               kind: speech
               title: Smud hos kundene
               teams: 
@@ -157,8 +157,8 @@ schedule:
                 Hvordan oppleves våre leveranser sett fra kundene. Nyttig å vite for alle som leverer programvare.
               speaker: Jahn Harald Bull
               tag: K8s, Leveranse
-            - start: 2025-04-09:14.15
-              end: 2025-04-09:14.45
+            - start: 2025-04-09T14:15
+              end: 2025-04-09T14:45
               kind: speech
               title: Nytt i SMUD
               teams: 
@@ -167,8 +167,8 @@ schedule:
                 Nytt og nyttig i vår leveranseplattform. Og litt om hva vi kommer til å jobbe med framover. Metoder og muligheter rundt vår leveransemodell.
               speaker: Team Leveranse, Team Plattform og Team DDE
               tag: K8s, Leveranse
-            - start: 2025-04-09:15.00
-              end: 2025-04-09:16.00
+            - start: 2025-04-09T15:00
+              end: 2025-04-09T16:00
               kind: workshop
               title: Metrikkworkshop - Grafana dashboards i praksis
               teams: 
@@ -178,8 +178,8 @@ schedule:
                 Fra grunnleggende oppsett til effektive dashboards - alt du trenger for bedre innsikt i dine systemer.
               speaker: Øystein G. Lindbjør
               tag: Utvikling, Teknologi
-            - start: 2025-04-09:16.15
-              end: 2025-04-09:17.15
+            - start: 2025-04-09T16:15
+              end: 2025-04-09T17:15
               kind: workshop
               title: Hvordan utvikle mot felles utviklingsmiljø
               teams: 
@@ -192,8 +192,8 @@ schedule:
               tag: Utvikling, Teknologi
         - room: Landegode
           sessions:
-            - start: 2025-04-09:13.45
-              end: 2025-04-09:14.45
+            - start: 2025-04-09T13:45
+              end: 2025-04-09T14:45
               kind: workshop
               title: Bygg med Puls - i Figma
               teams: 
@@ -202,8 +202,8 @@ schedule:
                 Bli med på en praktisk workshop hvor du bygger med designsystemet vårt, Puls! Du får en konkret oppgave å løse ved hjelp av Puls-komponenter, mens vi er til stede for å svare på spørsmål og gi support.)
               speaker: Alexandra Lo Cascio
               tag: design
-            - start: 2025-04-09:16.15
-              end: 2025-04-09:16.45
+            - start: 2025-04-09T16:15
+              end: 2025-04-09T16:45
               kind: speech
               title: Dup is Dead
               teams: 
@@ -215,8 +215,8 @@ schedule:
                 Å fase ut bruken av dup helt er viktig også i forhold til leveransemetodikk og kompleksiteten som er i dag med bruk av octopus deploy i tillegg til smud-gitops modellen
               speaker: Helene Brinchmann Halvorsen       
               tag: Utvikling, Teknologi
-            - start: 2025-04-09:16.45
-              end: 2025-04-09:17.15
+            - start: 2025-04-09T16:45
+              end: 2025-04-09T17:15
               kind: speech
               title: Embedding infosec in Development at DIPS
               speaker: Joe Thomas
@@ -230,8 +230,8 @@ schedule:
               tag: Sikkerhet, Teknologi             
         - room: Klasserom
           sessions: 
-            - start: 2025-04-09:13.45
-              end: 2025-04-09:14.15
+            - start: 2025-04-09T13:45
+              end: 2025-04-09T14:15
               kind: speech
               title: Arena mobil - App Store og Play Store
               teams: 
@@ -240,8 +240,8 @@ schedule:
               description: |
               speaker: Tor Eirik Guin
               tag: Produkt
-            - start: 2025-04-09:14.15
-              end: 2025-04-09:14.45
+            - start: 2025-04-09T14:15
+              end: 2025-04-09T14:45
               kind: speech
               title: Fra himmel til helmete
               ingress: Dette foredraget vil utforske hvordan vi kan jobbe med helm charts og templates uten å forkaste etablerte prinsipper for utvikling av kode. Vi har lang erfaring med å utvikling med automatisk testing, gjenbruk, abstraksjon og modularisering. Hvordan kan vi dra nytte av dette når vi jobber med helm charts?
@@ -249,8 +249,8 @@ schedule:
                 Helm charts er viktig i DIPS sin leveransemodell fremover, og vi trenger å snakke om hvordan vi kan jobbe med slike charts fremover.
               speaker: Trygve Valøy
               tag: Utvikling, Teknologi
-            - start: 2025-04-09:15.00
-              end: 2025-04-09:15.30
+            - start: 2025-04-09T15:00
+              end: 2025-04-09T15:30
               kind: speech
               title: KPIer og dashboard - hvordan data hjelper helsevesenet til å drive mer effektivt og gi riktigere behandling
               ingress: Hvordan kan DIPS hjelpe leger, ledere, avdelinger og helsevesenet generelt ved å gi dem bedre styringsdata?
@@ -259,8 +259,8 @@ schedule:
                 Hvordan skaper vi verdi av de dataene vi forvalter i DIPS Arena?
               speaker: Pål Brekke og Jon Bratberg
               tag: Teknologi
-            - start: 2025-04-09:15.30
-              end: 2025-04-09:16.00
+            - start: 2025-04-09T15:30
+              end: 2025-04-09T16:00
               kind: speech
               title: Språkteknologi i medisin - hvem, hva, hvor, hvordan og hvorfor/hvorfor ikke?
               ingress: Kunstig intelligens, og spesielt språkteknologi, gir en masse nye muligheter. 
@@ -270,14 +270,14 @@ schedule:
                 Forstå litt mer om helsevesenets behov, hva som allerede gjøres, og hva vi kan bidra med fra DIPS.
               speaker: Pål Brekke
               tag: KI
-            - start: 2025-04-09:16.15
-              end: 2025-04-09:16.45
+            - start: 2025-04-09T16:15
+              end: 2025-04-09T16:45
               kind: speech
               title: Poweroffice - overgang testing fra onprem til sky
               speaker: Anette Lund og Anja Sjøholt
               tag: QA
-            - start: 2025-04-09:16.15
-              end: 2025-04-09:16.45
+            - start: 2025-04-09T16:15
+              end: 2025-04-09T16:45
               kind: speech
               title: ShareIT prosjektet
               description: |

@@ -5,6 +5,7 @@ import FavoriteButton from './FavoriteButton';
 import SessionTags from './SessionTags';
 import SessionTypeBadge from './SessionTypeBadge';
 import NextSessionsButton from './NextSessionsButton';
+import { Key } from 'react';
 
 // Update the props interface to include the dayIndex
 interface NextSessionsProps {
@@ -178,7 +179,7 @@ export default function NextSessions({ day, dayIndex, onSessionClick, currentTim
                     
                     {/* Sessions in this room */}
                     <div className="divide-y divide-gray-100">
-                      {sessionsByRoom[roomName].map((session, sessionIndex) => {
+                      {sessionsByRoom[roomName].map((session: Session, sessionIndex: Key | null | undefined) => {
                         const isWorkshop = session.kind === 'workshop';
                         
                         return (
