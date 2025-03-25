@@ -16,7 +16,7 @@ interface NextSessionsProps {
   currentTime?: string;
 }
 
-export default function NextSessions({ day, dayIndex, onSessionClick, currentTime }: NextSessionsProps) {
+export default function NextSessions({ day, dayIndex, currentTime }: NextSessionsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState<(Session & { room?: string }) | null>(null);
   const { nextSessions, sessionsByRoom, sortedRooms } = useUpcomingSessions(day, currentTime);
