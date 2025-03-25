@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { Day, Session } from '../../types/schedule';
-import { formatTime, getTagColor } from '../../utils/timeUtils';
+import { formatTime, getTagColor, getTimeFromString } from '../../utils/timeUtils';
 import NextSessionsButton from './NextSessionsButton';
 import { useUpcomingSessions } from '../../hooks/useUpcomingSessions';
 import ConnectedSessionsCard from './ConnectedSessionsCard';
-import FavoriteButton from './FavoriteButton';
 import SessionModal from './SessionModal';
 
 interface NextSessionsProps {
@@ -19,6 +18,7 @@ interface NextSessionsProps {
 export default function NextSessions({ day, dayIndex, currentTime }: NextSessionsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState<(Session & { room?: string }) | null>(null);
+  const [selectedConnectedSessions, setSelectedConnectedSessions] = useState<(Session & { room?: string })[] | null>(null);
   const { nextSessions, sessionsByRoom, sortedRooms } = useUpcomingSessions(day, currentTime);
   
   // If no upcoming sessions, don't show anything
@@ -26,14 +26,41 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
     return null;
   }
   
-  // Handle session click within this component
+  // Handle regular session click
   const handleSessionClick = (session: Session & { room?: string }) => {
     setSelectedSession(session);
+    setSelectedConnectedSessions(null);
   };
   
-  // Handle closing the session modal
+  // Handle connected sessions click
+  const handleConnectedSessionsClick = (sessions: (Session & { room?: string })[]) => {
+    setSelectedConnectedSessions(sessions);
+    setSelectedSession(null);
+  };
+  
+  // Handle closing the session modals
   const handleCloseSessionModal = () => {
     setSelectedSession(null);
+    setSelectedConnectedSessions(null);
+  };
+  
+  // Check if sessions are connected (one starts when the other ends)
+  const areSessionsConnected = (sessions: Session[]) => {
+    if (sessions.length <= 1) return false;
+    
+    // Sort sessions by start time
+    const sortedSessions = [...sessions].sort((a, b) => 
+      getTimeFromString(a.start) - getTimeFromString(b.start)
+    );
+    
+    // Check if any session starts when the previous one ends
+    for (let i = 1; i < sortedSessions.length; i++) {
+      if (sortedSessions[i-1].end === sortedSessions[i].start) {
+        return true;
+      }
+    }
+    
+    return false;
   };
   
   return (
@@ -44,11 +71,12 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
         onClick={() => setIsOpen(true)}
       />
       
-      {/* Modal with session details */}
+      {/* Modal with session details - wider on desktop */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex sm:items-center justify-center">
-          <div className="bg-white w-full sm:max-w-lg sm:rounded-lg rounded-none max-h-[100vh] sm:max-h-[80vh] flex flex-col overflow-hidden shadow-xl">
-            <div className="sticky top-0 bg-[#081079] text-white p-4 flex justify-between items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+          <div className="bg-white w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 sm:rounded-lg rounded-none 
+                          max-h-[100vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-xl">
+            <div className="sticky top-0 bg-[#081079] text-white p-4 flex justify-between items-center z-10">
               <h3 className="text-lg font-bold">Kommende aktiviteter</h3>
               <button 
                 onClick={() => setIsOpen(false)}
@@ -68,90 +96,103 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                 </p>
               </div>
               
-              <div className="space-y-6">
-                {sortedRooms.map(roomName => (
-                  <div key={roomName} className="border border-gray-200 rounded-lg overflow-hidden">
-                    {/* Room header */}
-                    <div className="bg-[#081079] text-white py-2 px-4 font-bold">
-                      {/* Display correct room name for common sessions based on day */}
-                      {roomName === 'Felles' 
-                        ? (dayIndex === 0 ? 'Arena' : 'Storsalen')
-                        : roomName
-                      } 
-                      {sessionsByRoom[roomName].length > 1 && (
-                        <span className="ml-2 text-sm bg-white text-[#081079] rounded-full px-2 py-0.5">
-                          {sessionsByRoom[roomName].length} aktiviteter
-                        </span>
-                      )}
-                    </div>
-                    
-                    {/* If multiple sessions in this room, use ConnectedSessionsCard */}
-                    {sessionsByRoom[roomName].length > 1 ? (
-                      <div className="p-2">
-                        <ConnectedSessionsCard
-                          sessions={sessionsByRoom[roomName]}
-                          onClick={handleSessionClick}
-                          isCommon={roomName === 'Felles'}
-                          dayIndex={dayIndex}
-                          showRoom={false}
-                        />
+              {/* Rooms grid - vertical on mobile, horizontal on larger screens */}
+              <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                {sortedRooms.map(roomName => {
+                  const sessions = sessionsByRoom[roomName];
+                  const isConnected = areSessionsConnected(sessions);
+                  
+                  return (
+                    <div key={roomName} className="h-full border border-gray-200 rounded-lg overflow-hidden">
+                      {/* Room header */}
+                      <div className="border-b border-l-[#081079] text-[#081079] py-2 px-4 font-bold">
+                        {/* Display correct room name for common sessions based on day */}
+                        {roomName === 'Felles' 
+                          ? (dayIndex === 0 ? 'Arena' : 'Storsalen')
+                          : roomName
+                        } 
+                        {sessions.length > 1 && (
+                          <span className="ml-2 text-sm bg-white border border-[#081079] text-[#081079] rounded-full px-2 py-0.5">
+                            {sessions.length} aktiviteter
+                          </span>
+                        )}
                       </div>
-                    ) : (
-                      // Single session display
-                      <div className="divide-y divide-gray-100">
-                        {sessionsByRoom[roomName].map((session, index) => {
-                          const isWorkshop = session.kind === 'workshop';
-                          const isCommon = roomName === 'Felles';
-                          
-                          return (
-                            <div
-                              key={index}
-                              onClick={() => handleSessionClick(session)}
-                              className={`relative p-3 cursor-pointer hover:bg-gray-50 transition-all ${
-                                isCommon ? 'border-l-4 border-[#f0b429]' : 
-                                isWorkshop ? 'border-l-4 border-[#e05252]' : 
-                                'border-l-4 border-[#3949ab]'
-                              }`}
-                            >
-                              {/* Favorite button */}
-                              <FavoriteButton 
-                                session={session} 
-                                dayIndex={dayIndex}  
-                                className="absolute top-2 right-2" 
-                              />
+                      
+                      {/* Sessions - use ConnectedSessionsCard for connected sessions */}
+                      <div className="p-3 h-full">
+                        {isConnected ? (
+                          <ConnectedSessionsCard
+                            sessions={sessions}
+                            onClick={(session) => {
+                              setSelectedSession(session);
+                              setSelectedConnectedSessions(sessions);
+                            }}
+                            isCommon={roomName === 'Felles'}
+                            dayIndex={dayIndex}
+                            showRoom={false}
+                          />
+                        ) : (
+                          // Grid layout for individual sessions
+                          <div className="grid gap-3 grid-cols-1">
+                            {!isConnected && sessions.map((session, index) => {
+                              const isWorkshop = session.kind === 'workshop';
+                              const isCommonSession = roomName === 'Felles';
                               
-                              {/* Title */}
-                              <div className="font-bold text-[#333333] pr-8">{session.title}</div>
+                              // Define hover background based on session type
+                              const hoverBg = isCommonSession
+                                ? 'hover:bg-[#fff7e0]' // Darker yellow for common
+                                : isWorkshop
+                                  ? 'hover:bg-[#fff0f0]' // Darker red for workshop
+                                  : 'hover:bg-[#f0f2fa]'; // Darker blue for talks
                               
-                              {/* Time and session type */}
-                              <div className="flex justify-between items-center mt-1">
-                                <div className={
-                                  isCommon ? "text-[#b88a00]" :
-                                  isWorkshop ? "text-[#e05252]" : 
-                                  "text-[#3949ab]"
-                                }>
-                                  {formatTime(session.start)} - {formatTime(session.end)}
-                                </div>
-                              </div>
+                              // Define time text color
+                              const timeTextColor = isCommonSession
+                                ? 'text-[#b88a00]'
+                                : isWorkshop
+                                  ? 'text-[#e05252]'
+                                  : 'text-[#3949ab]';
                               
-                              {/* Speaker */}
-                              {session.speaker && (
-                                <div className="text-[#333333] mt-1">{session.speaker}</div>
-                              )}
-                              
-                              {/* Session tags */}
-                              <div className="flex flex-wrap items-center gap-1 mt-2">
-                                {session.kind && (
-                                  <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded font-medium ${
-                                    isWorkshop ? 'bg-[#e05252] text-white' : 'bg-[#3949ab] text-white'
-                                  }`}>
-                                    {isWorkshop ? 'workshop' : 'foredrag'}
-                                  </span>
-                                )}
-                                
-                                {session.tag && (
-                                  <div className="flex flex-wrap gap-1">
-                                    {session.tag.split(',').map((tag, tagIndex) => (
+                              return (
+                                <div 
+                                  key={index} 
+                                  className={`relative p-3 cursor-pointer transition-colors ${
+                                    isCommonSession ? 'border-l-4 border-[#f0b429] bg-[#fffbf0] ' : 
+                                    isWorkshop ? 'border-l-4 border-[#e05252] bg-[#fff5f5] ' : 
+                                    'border-l-4 border-[#3949ab] bg-[#f5f7ff] '
+                                  } ${hoverBg}`}
+                                  onClick={() => handleSessionClick(session)}
+                                >
+                                  {/* Favorite button - can be added if needed */}
+                                  
+                                  {/* Title */}
+                                  <div className="font-bold text-[#333333] pr-8 text-sm sm:text-base">
+                                    {session.title}
+                                  </div>
+                                  
+                                  {/* Time */}
+                                  <div className={`text-xs font-medium ${timeTextColor} mt-1`}>
+                                    {formatTime(session.start)} - {formatTime(session.end)}
+                                  </div>
+                                  
+                                  {/* Speaker */}
+                                  {session.speaker && (
+                                    <div className="text-[#333333] mt-1 text-xs sm:text-sm">
+                                      {session.speaker}
+                                    </div>
+                                  )}
+                                  
+                                  {/* Tags and session type */}
+                                  <div className="flex flex-wrap items-center gap-1 mt-2">
+                                    {session.kind && (
+                                      <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded font-medium ${
+                                        isWorkshop ? 'bg-[#e05252] text-white' : 'bg-[#3949ab] text-white'
+                                      }`}>
+                                        {isWorkshop ? 'workshop' : 'foredrag'}
+                                      </span>
+                                    )}
+                                    
+                                    {/* Content tags */}
+                                    {session.tag && session.tag.split(',').map((tag, tagIndex) => (
                                       <span 
                                         key={tagIndex} 
                                         className={`${getTagColor(tag.trim())} px-2 py-0.5 text-xs rounded`}
@@ -160,15 +201,15 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                                       </span>
                                     ))}
                                   </div>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             
@@ -184,7 +225,7 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
         </div>
       )}
       
-      {/* Session detail modal - shown within this component */}
+      {/* Session detail modal - for individual sessions */}
       {selectedSession && (
         <SessionModal 
           session={selectedSession} 

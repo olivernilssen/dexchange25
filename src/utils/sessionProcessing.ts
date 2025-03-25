@@ -38,7 +38,7 @@ export function collectTimelineItems(day: Day, breaks: Break[]): TimelineItem[] 
             isBreak: false,
             startTime: getTimeFromString(session.start),
             endTime: getTimeFromString(session.end),
-            room: track.room
+            room: track.room || "Unknown"
           });
         });
       }
@@ -53,7 +53,7 @@ export function collectTimelineItems(day: Day, breaks: Break[]): TimelineItem[] 
         isBreak: false,
         startTime: getTimeFromString(session.start),
         endTime: getTimeFromString(session.end),
-        room: "Felles",
+        room: session.room || "Felles", // Use session.room if it exists, fallback to "Felles"
         isCommon: true
       });
     });
