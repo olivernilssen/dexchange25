@@ -1,146 +1,50 @@
-import { useState, useEffect } from 'react';
-import { formatTime, getTimeFromString } from '../../utils/timeUtils';
-import { Day, Session } from '../../types/schedule';
-import FavoriteButton from './FavoriteButton';
-import SessionTags from './SessionTags';
-import SessionTypeBadge from './SessionTypeBadge';
-import NextSessionsButton from './NextSessionsButton';
-import { Key } from 'react';
+"use client";
 
-// Update the props interface to include the dayIndex
+import { useState } from 'react';
+import { Day, Session } from '../../types/schedule';
+import { formatTime, getTagColor } from '../../utils/timeUtils';
+import NextSessionsButton from './NextSessionsButton';
+import { useUpcomingSessions } from '../../hooks/useUpcomingSessions';
+import ConnectedSessionsCard from './ConnectedSessionsCard';
+import FavoriteButton from './FavoriteButton';
+import SessionModal from './SessionModal';
+
 interface NextSessionsProps {
   day: Day;
-  dayIndex: number; // Add this
+  dayIndex: number;
   onSessionClick: (session: Session & { room?: string }) => void;
-  currentTime?: string; // For testing - override current time
+  currentTime?: string;
 }
 
 export default function NextSessions({ day, dayIndex, onSessionClick, currentTime }: NextSessionsProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [nextSessions, setNextSessions] = useState<Array<Session & { room: string }>>([]);
-  const [sessionsByRoom, setSessionsByRoom] = useState<{[key: string]: Array<Session & { room: string }>}>({});
+  const [selectedSession, setSelectedSession] = useState<(Session & { room?: string }) | null>(null);
+  const { nextSessions, sessionsByRoom, sortedRooms } = useUpcomingSessions(day, currentTime);
   
-  // Function to find upcoming sessions
-  const findUpcomingSessions = () => {
-    if (!day || !day.tracks) return [];
-    
-    // Get current time in minutes (e.g., 9:30 AM = 570 minutes)
-    let now: number;
-    
-    if (currentTime) {
-      // Use provided time for testing
-      now = getTimeFromString(currentTime);
-    } else {
-      // Use actual current time
-      const date = new Date();
-      now = date.getHours() * 60 + date.getMinutes();
-    }
-    
-    console.log(`Current time: ${Math.floor(now/60)}:${now%60}`);
-    
-    // Collect all sessions with their rooms
-    const allSessions: Array<Session & { room: string }> = [];
-    
-    // Add room sessions
-    day.tracks.forEach(track => {
-      if (track.sessions) {
-        track.sessions.forEach(session => {
-          allSessions.push({
-            ...session,
-            room: track.room
-          });
-        });
-      }
-    });
-    
-    // Add common sessions
-    if (day.commonSessions) {
-      day.commonSessions.forEach(session => {
-        allSessions.push({
-          ...session,
-          room: "All Rooms"
-        });
-      });
-    }
-    
-    // Find sessions that haven't started yet
-    const upcomingSessions = allSessions.filter(session => {
-      const startTime = getTimeFromString(session.start);
-      return startTime > now;
-    });
-    
-    // Sort by start time
-    upcomingSessions.sort((a, b) => {
-      return getTimeFromString(a.start) - getTimeFromString(b.start);
-    });
-    
-    // Get the next time slot (sessions that start at the same time)
-    if (upcomingSessions.length > 0) {
-      const nextStartTime = getTimeFromString(upcomingSessions[0].start);
-      
-      // Get all sessions starting within the next 30 minutes from the first upcoming session
-      return upcomingSessions.filter(session => {
-        const startTime = getTimeFromString(session.start);
-        // Include sessions that start at the same time or up to 30 mins later
-        return startTime <= (nextStartTime + 30);
-      });
-    }
-    
-    return [];
-  };
-  
-  // Group sessions by room
-  const groupSessionsByRoom = (sessions: Array<Session & { room: string }>) => {
-    const grouped: {[key: string]: Array<Session & { room: string }>} = {};
-    
-    sessions.forEach(session => {
-      if (!grouped[session.room]) {
-        grouped[session.room] = [];
-      }
-      grouped[session.room].push(session);
-    });
-    
-    return grouped;
-  };
-  
-  // Update next sessions every minute
-  useEffect(() => {
-    const updateSessions = () => {
-      const upcoming = findUpcomingSessions();
-      setNextSessions(upcoming);
-      setSessionsByRoom(groupSessionsByRoom(upcoming));
-    };
-    
-    // Initial update
-    updateSessions();
-    
-    // Set interval to check every minute
-    const intervalId = setInterval(updateSessions, 60000);
-    
-    // Clean up on unmount
-    return () => clearInterval(intervalId);
-  }, [day, currentTime]);
-  
-  // If no upcoming sessions, don't show the button
+  // If no upcoming sessions, don't show anything
   if (nextSessions.length === 0) {
     return null;
   }
   
-  // Sort rooms to show rooms with multiple sessions first
-  const sortedRooms = Object.keys(sessionsByRoom).sort((a, b) => {
-    // Sort by number of sessions (descending)
-    return sessionsByRoom[b].length - sessionsByRoom[a].length;
-  });
+  // Handle session click within this component
+  const handleSessionClick = (session: Session & { room?: string }) => {
+    setSelectedSession(session);
+  };
+  
+  // Handle closing the session modal
+  const handleCloseSessionModal = () => {
+    setSelectedSession(null);
+  };
   
   return (
     <>
-      {/* Use the NextSessionsButton component */}
+      {/* Button to open modal */}
       <NextSessionsButton 
         count={nextSessions.length} 
         onClick={() => setIsOpen(true)}
       />
       
-      {/* Modal for showing next sessions */}
+      {/* Modal with session details */}
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex sm:items-center justify-center">
           <div className="bg-white w-full sm:max-w-lg sm:rounded-lg rounded-none max-h-[100vh] sm:max-h-[80vh] flex flex-col overflow-hidden shadow-xl">
@@ -167,9 +71,13 @@ export default function NextSessions({ day, dayIndex, onSessionClick, currentTim
               <div className="space-y-6">
                 {sortedRooms.map(roomName => (
                   <div key={roomName} className="border border-gray-200 rounded-lg overflow-hidden">
-                    {/* Room header - more prominent */}
+                    {/* Room header */}
                     <div className="bg-[#081079] text-white py-2 px-4 font-bold">
-                      {roomName} 
+                      {/* Display correct room name for common sessions based on day */}
+                      {roomName === 'Felles' 
+                        ? (dayIndex === 0 ? 'Arena' : 'Storsalen')
+                        : roomName
+                      } 
                       {sessionsByRoom[roomName].length > 1 && (
                         <span className="ml-2 text-sm bg-white text-[#081079] rounded-full px-2 py-0.5">
                           {sessionsByRoom[roomName].length} aktiviteter
@@ -177,52 +85,88 @@ export default function NextSessions({ day, dayIndex, onSessionClick, currentTim
                       )}
                     </div>
                     
-                    {/* Sessions in this room */}
-                    <div className="divide-y divide-gray-100">
-                      {sessionsByRoom[roomName].map((session: Session, sessionIndex: Key | null | undefined) => {
-                        const isWorkshop = session.kind === 'workshop';
-                        
-                        return (
-                          <div
-                            key={sessionIndex}
-                            onClick={() => {
-                              onSessionClick(session);
-                              setIsOpen(false);
-                            }}
-                            className={`relative p-3 cursor-pointer hover:bg-gray-50 transition-all ${
-                              isWorkshop 
-                                ? 'border-l-4 border-[#e05252]' 
-                                : 'border-l-4 border-[#3949ab]'
-                            }`}
-                          >
-                            {/* Use the FavoriteButton component */}
-                            <FavoriteButton 
-                              session={session} 
-                              dayIndex={dayIndex}  
-                              className="absolute top-2 right-2" 
-                            />
-                            
-                            <div className="font-bold text-[#333333] pr-8">{session.title}</div>
-                            
-                            <div className="flex justify-between items-center mt-1">
-                              <div className={isWorkshop ? "text-[#b73939]" : "text-[#3949ab]"}>
-                                {formatTime(session.start)} - {formatTime(session.end)}
+                    {/* If multiple sessions in this room, use ConnectedSessionsCard */}
+                    {sessionsByRoom[roomName].length > 1 ? (
+                      <div className="p-2">
+                        <ConnectedSessionsCard
+                          sessions={sessionsByRoom[roomName]}
+                          onClick={handleSessionClick}
+                          isCommon={roomName === 'Felles'}
+                          dayIndex={dayIndex}
+                          showRoom={false}
+                        />
+                      </div>
+                    ) : (
+                      // Single session display
+                      <div className="divide-y divide-gray-100">
+                        {sessionsByRoom[roomName].map((session, index) => {
+                          const isWorkshop = session.kind === 'workshop';
+                          const isCommon = roomName === 'Felles';
+                          
+                          return (
+                            <div
+                              key={index}
+                              onClick={() => handleSessionClick(session)}
+                              className={`relative p-3 cursor-pointer hover:bg-gray-50 transition-all ${
+                                isCommon ? 'border-l-4 border-[#f0b429]' : 
+                                isWorkshop ? 'border-l-4 border-[#e05252]' : 
+                                'border-l-4 border-[#3949ab]'
+                              }`}
+                            >
+                              {/* Favorite button */}
+                              <FavoriteButton 
+                                session={session} 
+                                dayIndex={dayIndex}  
+                                className="absolute top-2 right-2" 
+                              />
+                              
+                              {/* Title */}
+                              <div className="font-bold text-[#333333] pr-8">{session.title}</div>
+                              
+                              {/* Time and session type */}
+                              <div className="flex justify-between items-center mt-1">
+                                <div className={
+                                  isCommon ? "text-[#b88a00]" :
+                                  isWorkshop ? "text-[#e05252]" : 
+                                  "text-[#3949ab]"
+                                }>
+                                  {formatTime(session.start)} - {formatTime(session.end)}
+                                </div>
                               </div>
                               
-                              {/* Use the SessionTypeBadge component */}
-                              {session.kind && <SessionTypeBadge type={session.kind} />}
+                              {/* Speaker */}
+                              {session.speaker && (
+                                <div className="text-[#333333] mt-1">{session.speaker}</div>
+                              )}
+                              
+                              {/* Session tags */}
+                              <div className="flex flex-wrap items-center gap-1 mt-2">
+                                {session.kind && (
+                                  <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded font-medium ${
+                                    isWorkshop ? 'bg-[#e05252] text-white' : 'bg-[#3949ab] text-white'
+                                  }`}>
+                                    {isWorkshop ? 'workshop' : 'foredrag'}
+                                  </span>
+                                )}
+                                
+                                {session.tag && (
+                                  <div className="flex flex-wrap gap-1">
+                                    {session.tag.split(',').map((tag, tagIndex) => (
+                                      <span 
+                                        key={tagIndex} 
+                                        className={`${getTagColor(tag.trim())} px-2 py-0.5 text-xs rounded`}
+                                      >
+                                        {tag.trim()}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            
-                            {session.speaker && (
-                              <div className="text-[#333333] mt-1">{session.speaker}</div>
-                            )}
-                            
-                            {/* Use the SessionTags component */}
-                            {session.tag && <SessionTags tags={session.tag} className="mt-2" />}
-                          </div>
-                        );
-                      })}
-                    </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -238,6 +182,14 @@ export default function NextSessions({ day, dayIndex, onSessionClick, currentTim
             </div>
           </div>
         </div>
+      )}
+      
+      {/* Session detail modal - shown within this component */}
+      {selectedSession && (
+        <SessionModal 
+          session={selectedSession} 
+          onClose={handleCloseSessionModal} 
+        />
       )}
     </>
   );

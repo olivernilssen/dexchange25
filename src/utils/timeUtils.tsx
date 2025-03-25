@@ -91,16 +91,34 @@ export function getTagColor(tagName: string): string {
     return 'bg-[#8da9e4] text-[#081079]'; // Light blue
   } else if (tag.includes('teknologi')) {
     return 'bg-[#b4d9a4] text-[#081079]'; // Light green
-  } else if (tag.includes('k8s') || tag.includes('devops') || tag.includes('deploy') || tag.includes('leveranse')) {
+  } else if (tag.includes('k8s') || tag.includes('devops') || tag.includes('smud') || tag.includes('leveranse')) {
     return 'bg-[#c3a8e1] text-[#081079]'; // Light purple
-  } else if (tag.includes('data') || tag.includes('ai') || tag.includes('ki')) {
+  } else if (tag.includes('data') || tag.includes('sikkerhet') || tag.includes('ki')) {
     return 'bg-[#f0d589] text-[#081079]'; // Light yellow 
-  } else if (tag.includes('brukervennlighet') || tag.includes('qa')) {
+  } else if (tag.includes('qa')) {
     return 'bg-[#f6a495] text-[#081079]'; // Light salmon
-  } else if (tag.includes('sammarbeid') || tag.includes('produkt') || tag.includes('strategi') || tag.includes('prosess')) {
+  } else if (tag.includes('sammarbeid') || tag.includes('produkt') || tag.includes('prosess')) {
     return 'bg-[#89c7f0] text-[#081079]'; // Light sky blue
-  } else if (tag.includes('utvikling') || tag.includes('ux') || tag.includes('ui')) {
+  } else if (tag.includes('utvikling')) {
     return 'bg-[#a8e1d9] text-[#081079]'; // Light teal
+  } else if (tag.includes('innovasjon') || tag.includes('modernisering')) {
+    return 'bg-[#f4c4e0] text-[#081079]'; // Light pink
+  } else if (tag.includes('alle')) {
+    return 'bg-[#ffcba4] text-[#081079]'; // Light peach
+  } else if (tag.includes('testing')) {
+    return 'bg-[#d2e0fb] text-[#081079]'; // Pale blue
+  } else if (tag.includes('ekstern')) {
+    return 'bg-[#b8d8be] text-[#081079]'; // Soft green
+  } else if (tag.includes('web')) {
+    return 'bg-[#dbc6eb] text-[#081079]'; // Lavender
+  } else if (tag.includes('design')) {
+    return 'bg-[#bfd0e0] text-[#081079]'; // Steel blue
+  } else if (tag.includes('ytelse')) {
+    return 'bg-[#ffecb8] text-[#081079]'; // Pale yellow
+  } else if (tag.includes('metode')) {
+    return 'bg-[#e0c3fc] text-[#081079]'; // Light violet
+  } else if (tag.includes('strategi')) {
+    return 'bg-[#c2e5d3] text-[#081079]'; // Mint green
   }
   
   // Default color for other tags

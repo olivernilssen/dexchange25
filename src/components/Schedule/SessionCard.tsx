@@ -3,6 +3,7 @@ import { Session } from '../../types/schedule';
 import FavoriteButton from './FavoriteButton';
 import SessionTags from './SessionTags';
 import SessionTypeBadge from './SessionTypeBadge';
+import { RoomBadge } from '../../utils/roomUtils';
 
 interface SessionCardProps {
   session: Session & { room?: string };
@@ -10,24 +11,38 @@ interface SessionCardProps {
   isCommon?: boolean;
   dayIndex: number;
   isCompleted?: boolean;
+  showRoom?: boolean;
 }
 
-export default function SessionCard({ session, onClick, isCommon = false, dayIndex, isCompleted }: SessionCardProps) {
-  // Determine if session is a workshop
-  const isWorkshop = session.kind === 'workshop';
+export default function SessionCard({ 
+  session, 
+  onClick, 
+  isCommon = false, 
+  dayIndex, 
+  isCompleted,
+  showRoom = false
+}: SessionCardProps) {
+  // Determine card styling based on session type and whether it's common
+  let cardStyles = '';
+  let timeTextColor = '';
   
-  // Base card styling
-  const cardStyles = isWorkshop 
-    ? 'border-l-4 border-[#e05252] bg-[#fff0f0]' // Stronger red theme for workshops
-    : 'border-l-4 border-[#3949ab] bg-[#f0f4ff]'; // Stronger blue theme for speeches
-  
-  const iconSymbol = isWorkshop 
-    ? '🔧' 
-    : '🎤';
+  if (isCommon) {
+    // Common session styling (golden/yellow theme)
+    cardStyles = 'border-l-4 border-[#f0b429] bg-[#fffbeb]';
+    timeTextColor = 'text-[#b88a00]';
+  } else if (session.kind === 'workshop') {
+    // Workshop styling (red theme)
+    cardStyles = 'border-l-4 border-[#e05252] bg-[#fff0f0]';
+    timeTextColor = 'text-[#e05252]';
+  } else {
+    // Default/speech styling (blue theme)
+    cardStyles = 'border-l-4 border-[#3949ab] bg-[#f0f4ff]';
+    timeTextColor = 'text-[#3949ab]';
+  }
   
   return (
     <div 
-      className={`relative p-3 rounded shadow ${cardStyles} cursor-pointer hover:shadow-md transition-all ${isCompleted ? 'bg-green-100' : ''}`}
+      className={`relative p-3 rounded shadow ${cardStyles} cursor-pointer hover:shadow-md transition-all ${isCompleted ? 'opacity-75' : ''}`}
       onClick={() => onClick(session)}
     >
       {/* Favorite star button in the top-right corner */}
@@ -37,27 +52,23 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
         className="absolute top-2 right-2" 
       />
       
-      {/* Position indicator dot with type-specific color */}
-      <div className={`absolute -left-8 top-1/2 transform -translate-y-1/2 w-4 h-4 rounded-full ${
-        isWorkshop ? 'bg-[#e05252]' : 'bg-[#3949ab]'
-      } border-2 border-white`}></div>
-      
-      {/* Add a distinctive pattern stripe for workshops */}
-      {isWorkshop && (
-        <div className="absolute top-0 right-0 w-12 h-12 overflow-hidden">
-          <div className="absolute transform rotate-45 bg-[#ffdddd] w-16 h-3 top-6 right-[-8px]"></div>
+      {/* Time and room display at the top of the card - Added pr-10 to prevent overlap */}
+      <div className="flex items-center justify-between mb-2 pr-10">
+        <div className={`text-xs font-medium ${timeTextColor}`}>
+          {formatTime(session.start)} - {formatTime(session.end)}
+          {isCompleted && <span className="text-green-500 ml-2">(Completed)</span>}
         </div>
-      )}
-      
-      {/* Title with session type icon - add right padding for star */}
-      <div className="font-bold text-[#333333] flex items-center pr-8">
-        <span className="mr-2">{iconSymbol}</span>
-        {session.title}
+        
+        {showRoom && session.room && (
+          isCommon
+            ? <RoomBadge room={dayIndex === 0 ? 'Arena' : 'Storsalen'} />
+            : <RoomBadge room={session.room} />
+        )}
       </div>
       
-      {/* Time slot */}
-      <div className={isWorkshop ? "text-[#b73939]" : "text-[#3949ab]"}>
-        {formatTime(session.start)} - {formatTime(session.end)}
+      {/* Title with right padding for star */}
+      <div className="font-bold text-[#333333] pr-8">
+        {session.title}
       </div>
       
       {/* Speaker info */}
@@ -65,37 +76,15 @@ export default function SessionCard({ session, onClick, isCommon = false, dayInd
         <div className="text-[#333333] mt-1">{session.speaker}</div>
       )}
       
-      {/* Tags section */}
-      <div className="flex flex-wrap gap-1 mt-2">
+      {/* Tags and badges section */}
+      <div className="flex flex-wrap items-center gap-1 mt-2">
+        
         {/* Session type badge */}
         {session.kind && <SessionTypeBadge type={session.kind} />}
         
         {/* Content tags */}
         {session.tag && <SessionTags tags={session.tag} />}
       </div>
-      
-      {/* Duration indicator for workshops */}
-      {isWorkshop && (
-        <div className="mt-2 text-xs text-[#e05252] font-medium">
-          Interaktiv økt • {calculateDuration(session.start, session.end)} min
-        </div>
-      )}
-      
-      {/* Completed indicator */}
-      {isCompleted 
-        && <span className="text-green-500 text-xs">(Completed)</span>
-      }
     </div>
   );
-}
-
-// Helper function to calculate session duration in minutes
-function calculateDuration(start: string, end: string): number {
-  const startParts = start.split(':')[1].replace('.', ':').split(':').map(Number);
-  const endParts = end.split(':')[1].replace('.', ':').split(':').map(Number);
-  
-  const startMinutes = startParts[0] * 60 + (startParts[1] || 0);
-  const endMinutes = endParts[0] * 60 + (endParts[1] || 0);
-  
-  return endMinutes - startMinutes;
 }

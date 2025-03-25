@@ -7,7 +7,7 @@ export default function SessionTypeBadge({ type, className = '' }: SessionTypeBa
   const isWorkshop = type === 'workshop';
   
   return (
-    <span className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${
+    <span className={`inline-flex items-center justify-center px-2 py-0.5 text-xs rounded font-medium ${
       isWorkshop 
         ? 'bg-[#e05252] text-white' 
         : 'bg-[#3949ab] text-white'
