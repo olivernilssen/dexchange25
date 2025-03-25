@@ -4,6 +4,8 @@ import FavoriteButton from './FavoriteButton';
 import Link from 'next/link';
 import { ExternalLink, PlayCircle, Video } from 'lucide-react';
 import { useEffect, useRef } from 'react';
+import { RoomBadge } from '../../utils/roomUtils';
+import RoomDisplay from './RoomDisplay';
 
 interface SessionModalProps {
   session: Session & { room?: string } | null;
@@ -15,6 +17,7 @@ interface SessionModalProps {
 export default function SessionModal({ session, connectedSessions, onClose, dayIndex = 0 }: SessionModalProps) {
   // Store the scroll position
   const scrollPositionRef = useRef(0);
+  const isCommon = session?.room === 'Felles';
   
   // Effect to manage body scroll locking
   useEffect(() => {
@@ -85,9 +88,11 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
               </div>
               
               {session.room && (
-                <div className="text-sm bg-gray-100 px-2 py-1 rounded">
-                  {session.room}
-                </div>
+                <RoomDisplay 
+                  room={session.room}
+                  isCommon={isCommon}
+                  dayIndex={dayIndex}
+                />
               )}
             </div>
             

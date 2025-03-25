@@ -5,6 +5,9 @@ import SessionTags from './SessionTags';
 import SessionTypeBadge from './SessionTypeBadge';
 import FavoriteButton from './FavoriteButton';
 import { RoomBadge } from '../../utils/roomUtils';
+import { getSessionCardStyles } from '../../styles/styleUtils';
+import { SESSION_COLORS } from '../../styles/theme';
+import RoomDisplay from './RoomDisplay';
 
 interface ConnectedSessionsCardProps {
   sessions: Array<Session & { room?: string }>;
@@ -20,28 +23,17 @@ export default function ConnectedSessionsCard({
   onClick,
   isCommon = false,
   dayIndex,
-  isCompleted,
-  showRoom = false
+  isCompleted = false,
+  showRoom = true
 }: ConnectedSessionsCardProps) {
-  // Define card styles based on session type
+  if (!sessions.length) return null;
+  
   const firstSession = sessions[0];
   const isWorkshop = firstSession.kind === 'workshop';
-  
-  const cardClasses = isCommon
-    ? 'border-l-4 border-[#f0b429] bg-[#fffbf0]' // Common sessions
-    : isWorkshop
-      ? 'border-l-4 border-[#e05252] bg-[#fff5f5]' // Workshops
-      : 'border-l-4 border-[#3949ab] bg-[#f5f7ff]'; // Talks
-      
-  // Define hover backgrounds for session items
-  const hoverBg = isCommon
-    ? 'hover:bg-[#fff7e0]' // Darker yellow for common
-    : isWorkshop
-      ? 'hover:bg-[#fff0f0]' // Darker red for workshop
-      : 'hover:bg-[#f0f2fa]'; // Darker blue for talks
+  const styles = getSessionCardStyles(isCommon, isWorkshop);
   
   return (
-    <div className={`relative rounded shadow ${cardClasses} h-full flex flex-col pl-4 sm:pl-3`}>
+    <div className={`${styles.card} h-full flex flex-col pl-4 sm:pl-3`}>
       {/* Favorite star button in the top-right corner for the entire group */}
       <FavoriteButton 
         session={firstSession} 
@@ -53,16 +45,21 @@ export default function ConnectedSessionsCard({
       <div className="divide-y divide-dashed divide-gray-300">
         {sessions.map((session, index) => {
           const isLastSession = index === sessions.length - 1;
+          
+          // Get the time text color directly
           const timeTextColor = isCommon
-            ? 'text-[#b88a00]'
+            ? SESSION_COLORS.common.textColor
             : session.kind === 'workshop'
-              ? 'text-[#e05252]'
-              : 'text-[#3949ab]';
+              ? SESSION_COLORS.workshop.textColor
+              : SESSION_COLORS.talk.textColor;
+          
+          // Or simplify by using the styles from the first session
+          // const timeTextColor = styles.timeText;
           
           return (
             <div 
               key={index}
-              className={`pt-3 ${isLastSession ? 'pb-4' : 'pb-3'} cursor-pointer ${hoverBg} transition-colors`}
+              className={`pt-3 ${isLastSession ? 'pb-4' : 'pb-3'} cursor-pointer ${styles.hover} transition-colors`}
               onClick={() => onClick(session)}
             >
               {/* Time and room info */}
@@ -73,9 +70,11 @@ export default function ConnectedSessionsCard({
                 </div>
                 
                 {showRoom && index === 0 && session.room && (
-                  isCommon
-                    ? <RoomBadge room={dayIndex === 0 ? 'Arena' : 'Storsalen'} />
-                    : <RoomBadge room={session.room} />
+                    <RoomDisplay 
+                        room={session.room}
+                        isCommon={isCommon}
+                        dayIndex={dayIndex}
+                    />
                 )}
               </div>
               
