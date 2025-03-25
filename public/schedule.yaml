@@ -34,40 +34,45 @@ schedule:
           ingress: Velkommen til d:exchange 2025!
           description: |
             Vi gleder oss til to dager med deling av kunnskap fra både interne og eksterne.
-          tag: Felles
+          tag: alle
         - start: 2025-04-09T11:15
           end: 2025-04-09T12:00
           kind: speech
-          title: Keynote
+          title: Keynote - En lysende fremtid for DIPS
           teams: 
           recording: 
-          ingress: TBA
+          ingress: Christin har jobbet som softwareutvikler i 20 år. Hun har erfaring fra både privat og offentlig sektor, som fast ansatt og som konsulent i både store og små firmaer. I dag jobber hun i konsulent-selskapet Kodemaker. Hun er kjent for en engasjerende fortellerstil, både skriftlig og på scenen, og liker å sette ting på spissen for å få folk til å se ting fra nye vinkler og utfordre etablerte sannheter.
           description: |
-            TBA
+            Christin går gjennom litt tips og tanker om mulighetene fremover for DIPS. 
+            Og hvordan en bedrift som DIPS ikke bare skal overleve, men levere! Og ikke bare for egne eiere, men for hele det norske folk og helsesektoren.
+            Hun kommer inn på teamer som:
+              - Hvilke faktorer må være på plass for å levere utvikle levere programvare optimalt
+              - Hvordan skal en tenke på utvikling av software?
+              - Hvordan skal en forholde seg til juridiske begrensninger?
+              - Hvordan lager vi god brukeropplevelse innen helsesektoren? 
           speaker: Christin Gorman
-          tag: Felles
+          tag: alle, produkt, utvikling
         - start: 2025-04-09T12:45
           end: 2025-04-09T13:30
           kind: speech
-          title: | 
-            Felles sesjon TBA
+          title: Hvordan lykkes med applikasjonsmodernisering
           teams: 
           recording: 
-          speaker: Telenor    
+          speaker: TBA    
           ingress: Felles sesjon TBA
           description: | 
             Felles sesjon TBA
-          tag: Felles
+          tag: alle, modernisering
         - start: 2025-04-09T17:30
           end: 2025-04-09T18:30
           kind: speech
-          title: Foredrag om KI TBA
+          title: To be announced
           teams: 
           ingress: To be announced
           description: |
             TBA
           speaker: TBA
-          tag: Felles
+          tag: alle
       tracks:
         - room: Arena
           sessions:
@@ -85,7 +90,7 @@ schedule:
                 Med felles forståelse av hvordan man utformer og bruker effektive prompts, kan flere i organisasjonen dra nytte av teknologien, unngå vanlige feil og samarbeide mer effektivt. 
                 Dette legger til rette for bedre ressursutnyttelse, reduserer tid brukt på feilretting og styrker en felles kultur for innovasjon og kontinuerlig læring.
               speaker: Bjørn Fjukstad
-              tag: KI, Teknologi              
+              tag: KI, alle              
             - start: 2025-04-09T14:15
               end: 2025-04-09T14:45
               kind: speech
@@ -99,7 +104,7 @@ schedule:
                 Dette er DIPS sin første fokuserte satsning (ved siden av PiP) på et standalone journalprodukt på web. 
                 Mange er nysgjerrige på denne reisen, og jo mer vi deler, jo mer innsikt organisasjonen får, jo mer forståelse og good will kan vi skape rundt de.
               speaker: Team Web
-              tag: Web
+              tag: web, alle
             - start: 2025-04-09T15:00
               end: 2025-04-09T15:30              
               kind: speech
@@ -110,40 +115,46 @@ schedule:
               description: |                 
                 Vi tar en titt på landskapet til web utvikling i 2025 og reflekterer rundt hvordan vi har endt opp der vi er i dag.
               speaker: Birk B. Eidsvik
-              tag: Web, Teknologi
+              tag: web, utvikling
             - start: 2025-04-09T15:30
               end: 2025-04-09T16:00
               kind: speech
               title: Fremtidens verktøy for helsevesenet
               teams: 
+              recording: 
               ingress: Hvordan kan AI forme helsevesenet i årene som kommer, og hvilke tekniske og praktiske utfordringer må vi løse for å komme dit?
               description: |
-                Jeg ønsker å utforske mulighetsrommet og inspirere til nye ideer om hvordan vi, sammen med andre aktører, kan bruke AI til å utvikle de beste mulige løsningene for pasienter i Norge – både gjennom det DIPS leverer og ved å legge til rette for innovasjon i hele økosystemet.
-              speaker: Petter Pettersen
-              tag: KI, Teknologi
+                Jeg ønsker å utforske mulighetsrommet og inspirere til nye ideer om hvordan vi, sammen med andre aktører, 
+                kan bruke AI til å utvikle de beste mulige løsningene for pasienter i Norge - både gjennom det DIPS leverer 
+                og ved å legge til rette for innovasjon i hele økosystemet.
+              speaker: Petter Stene Pettersen
+              tag: ki, alle
             - start: 2025-04-09T16:15
               end: 2025-04-09T16:45
               kind: speech
               title: Fra produkt-idé til implementering
-              teams: 
+              teams:
+              recording:
               ingress: Hvordan kan vi sikre at DIPS forblir den foretrukne EPJ-leverandøren? Svaret ligger i våre egne ressurser! 
               description: |
                 Hvordan kan vi sikre at DIPS forblir den foretrukne EPJ-leverandøren? Svaret ligger i våre egne ressurser! 
                 Med ambisjon om å være verdensledende innen EPJ må vi utnytte vårt fortrinn der vår samlede kompetanse innen utvikling, design og helsefag gir oss et unikt utgangspunkt.
               speaker: Anne Gromsrud
-              tag: Brukervennlighet, Sammarbeid  
+              tag: sammarbeid, alle  
             - start: 2025-04-09T16:45
               end: 2025-04-09T17:15
               kind: speech
               title: I Natt jag drömde
-              teams: 
+              teams:
+              recording:
               ingress: |
                 Sanntidsjournalen - Nytt liv i arkivet med maskinlæring og språkteknologi.
               description: |
-                Se demonstrasjoner av hvordan semantisk søk kan hjelpe brukerne finne frem i informasjonsoverlasten, hvordan språkteknologi kan hjelpe kommunikasjon mellom helsetjenestenivåene, hvordan maskinlæring kan bringe relevant funksjonalitet til brukeren, hvordan generativ UI kan skreddersy skjermbilder og mer. 
-                Delta på workshop for å utforske nye verktøy i ditt eget domene.
+                Se demonstrasjoner av hvordan semantisk søk kan hjelpe brukerne finne frem i informasjonsoverlasten, hvordan språkteknologi kan hjelpe kommunikasjon mellom helsetjenestenivåene,                
+                hvordan maskinlæring kan bringe relevant funksjonalitet til brukeren, hvordan generativ UI kan skreddersy skjermbilder og mer.
+                Delta på workshop på dag 2 for å utforske nye verktøy i ditt eget domene (for påmeldte).
               speaker: Liv Bollevåg, Bjørn Tore Hansen og Eivind Holt
-              tag: Sammarbeid
+              tag: innovasjon, alle
         - room: Kantina
           sessions:
             - start: 2025-04-09T13:45
@@ -156,47 +167,44 @@ schedule:
               description: |
                 Hvordan oppleves våre leveranser sett fra kundene. Nyttig å vite for alle som leverer programvare.
               speaker: Jahn Harald Bull
-              tag: K8s, Leveranse
+              tag: leveranse, smud
             - start: 2025-04-09T14:15
               end: 2025-04-09T14:45
               kind: speech
               title: Nytt i SMUD
               teams: 
-              ingress: 
+              ingress: Nytt og nyttig i vår leveranseplattform
               description: |
                 Nytt og nyttig i vår leveranseplattform. Og litt om hva vi kommer til å jobbe med framover. Metoder og muligheter rundt vår leveransemodell.
               speaker: Team Leveranse, Team Plattform og Team DDE
-              tag: K8s, Leveranse
+              tag: leveranse, smud 
             - start: 2025-04-09T15:00
               end: 2025-04-09T16:00
               kind: workshop
               title: Metrikkworkshop - Grafana dashboards i praksis
-              teams: 
               ingress: Lær å samle, analysere og visualisere metrikker i Grafana. 
               description: |
                 Lær å samle, analysere og visualisere metrikker i Grafana. 
                 Fra grunnleggende oppsett til effektive dashboards - alt du trenger for bedre innsikt i dine systemer.
               speaker: Øystein G. Lindbjør
-              tag: Utvikling, Teknologi
+              tag: utvikling, analyse
             - start: 2025-04-09T16:15
               end: 2025-04-09T17:15
               kind: workshop
-              title: Hvordan utvikle mot felles utviklingsmiljø
-              teams: 
+              title: SMUD utvikling
               ingress: Denne økten har som mål å dele tips&triks for SMUD utvikling.
               description: |
                 Vi bruker smud-user-group formatet og økta gir dere anledning til å komme med egne erfaringer og innslag. Team Leveranse forbereder innslag om disse temaene
                 - Delt utviklingsmiljø
                 - Overgang til paraplychart uten unødvendig nedetid i produksjon
               speaker: Jon S. Trandem
-              tag: Utvikling, Teknologi
+              tag: utvikling, K8s, smud
         - room: Landegode
           sessions:
             - start: 2025-04-09T13:45
               end: 2025-04-09T14:45
               kind: workshop
               title: Bygg med Puls - i Figma
-              teams: 
               ingress: Bli med på en praktisk workshop hvor du bygger med designsystemet vårt, Puls! 
               description: |
                 Bli med på en praktisk workshop hvor du bygger med designsystemet vårt, Puls! Du får en konkret oppgave å løse ved hjelp av Puls-komponenter, mens vi er til stede for å svare på spørsmål og gi support.)
@@ -207,14 +215,13 @@ schedule:
               kind: speech
               title: Dup is Dead
               teams: 
-              recording: 
+              recording:
               ingress: Mange har kommet over på liquibase, men fortsatt gjenstår noe.
               description: |
-                Mange har kommet over på liquibase, men fortsatt gjenstår noe. 
                 Og vi har en god del "testdata-dupper", vi kan ikke fortsette å lage slike så her må vi sammen finne bedre metoder.
                 Å fase ut bruken av dup helt er viktig også i forhold til leveransemetodikk og kompleksiteten som er i dag med bruk av octopus deploy i tillegg til smud-gitops modellen
               speaker: Helene Brinchmann Halvorsen       
-              tag: Utvikling, Teknologi
+              tag: utvikling
             - start: 2025-04-09T16:45
               end: 2025-04-09T17:15
               kind: speech
@@ -227,41 +234,52 @@ schedule:
                 To address this, we are laying the foundation for the next steps -> threat modeling, penetration testing, and hands-on coding labs
 
                 Much of infosec work seems to happen behind the scenes, so it could be beneficial for all to hear how we approach it across DIPS, what we are working on, and what to expect going forward.
-              tag: Sikkerhet, Teknologi             
+              tag: sikkerhet, utvikling             
         - room: Klasserom
           sessions: 
             - start: 2025-04-09T13:45
               end: 2025-04-09T14:15
               kind: speech
               title: Arena mobil - App Store og Play Store
-              teams: 
-              recording: 
-              ingress: 
+              teams:
+              recording:
+              ingress: Bli med på et inspirerende 30-minutters foredrag der vi deler hvordan vi tok appen vår til App Store og Google Play. Vi snakker om verdien av å være tilgjengelig på de største plattformene og hvordan vår pipeline sikrer effektiv utvikling, testing og lansering.
               description: |
-              speaker: Tor Eirik Guin
-              tag: Produkt
+                Å være på de største plattformene gir organisasjonen økt synlighet og styrker vår posisjon i markedet. 
+                Det påvirker hvordan hele organisasjonen blir oppfattet. Det viser at vi holder oss mer relevante på alle flater i et digitalt landskap. 
+                Selv om du ikke jobber med mobil i dag, er appens suksess en del av den helhetlige innovasjonen vi strekker oss etter
+              speaker: Håvard Moås og Tor Erik Guin
+              tag: utvikling, testing, leveranse, alle
             - start: 2025-04-09T14:15
               end: 2025-04-09T14:45
               kind: speech
               title: Fra himmel til helmete
-              ingress: Dette foredraget vil utforske hvordan vi kan jobbe med helm charts og templates uten å forkaste etablerte prinsipper for utvikling av kode. Vi har lang erfaring med å utvikling med automatisk testing, gjenbruk, abstraksjon og modularisering. Hvordan kan vi dra nytte av dette når vi jobber med helm charts?
+              teams:
+              recording:
+              ingress: Dette foredraget vil utforske hvordan vi kan jobbe med helm charts og templates uten å forkaste etablerte prinsipper for utvikling av kode.
               description: |
+                Vi har lang erfaring med å utvikling med automatisk testing, gjenbruk, abstraksjon og modularisering. 
+                Hvordan kan vi dra nytte av dette når vi jobber med helm charts?
                 Helm charts er viktig i DIPS sin leveransemodell fremover, og vi trenger å snakke om hvordan vi kan jobbe med slike charts fremover.
               speaker: Trygve Valøy
-              tag: Utvikling, Teknologi
+              tag: utvikling, smud
             - start: 2025-04-09T15:00
               end: 2025-04-09T15:30
               kind: speech
+              teams: 
+              recording:
               title: KPIer og dashboard - hvordan data hjelper helsevesenet til å drive mer effektivt og gi riktigere behandling
               ingress: Hvordan kan DIPS hjelpe leger, ledere, avdelinger og helsevesenet generelt ved å gi dem bedre styringsdata?
               description: |
                 Hvordan kan DIPS hjelpe leger, ledere, avdelinger og helsevesenet generelt ved å gi dem bedre styringsdata?
                 Hvordan skaper vi verdi av de dataene vi forvalter i DIPS Arena?
               speaker: Pål Brekke og Jon Bratberg
-              tag: Teknologi
+              tag: dashboard, alle
             - start: 2025-04-09T15:30
               end: 2025-04-09T16:00
               kind: speech
+              teams:
+              recording:
               title: Språkteknologi i medisin - hvem, hva, hvor, hvordan og hvorfor/hvorfor ikke?
               ingress: Kunstig intelligens, og spesielt språkteknologi, gir en masse nye muligheter. 
               description: |
@@ -269,21 +287,30 @@ schedule:
                 Og ikke så lurt. KI blir en helt sentral teknologi framover. 
                 Forstå litt mer om helsevesenets behov, hva som allerede gjøres, og hva vi kan bidra med fra DIPS.
               speaker: Pål Brekke
-              tag: KI
-            - start: 2025-04-09T16:15
-              end: 2025-04-09T16:45
+              tag: ki, alle
+            - start: 2025-04-09T16:45
+              end: 2025-04-09T17:15
               kind: speech
+              teams:
+              recording:
               title: Poweroffice - overgang testing fra onprem til sky
               speaker: Anette Lund og Anja Sjøholt
-              tag: QA
+              ingress: Vi skal snakke om overgangen fra onprem til sky, og deler våre erfaringer.
+              description: |
+                Kommer mer her...
+              tag: qa
             - start: 2025-04-09T16:15
               end: 2025-04-09T16:45
               kind: speech
-              title: ShareIT prosjektet
+              title: Kommunal journal i Arena - Alltid innen rekkevidde
+              teams:
+              recording:
+              ingress: Hvordan kan en lege gi rett behandling når hen ikke har nok informasjon om pasientens normaltilstand ved ankomst sykehuset?
               description: |
-                TBA
-              speaker: Stine Nyheim
-              tag: Produkt, Design
+                TBAI prosjektet Shareit skal vi sammen med Aidn tilgjengeilggjøre data på tvers av journalsystemer. 
+                I dette tilfellet fra Aidn til DIPS. Vi går gjennom brukerbehov, arkitekturskisser og funksjonalitet.
+              speaker: Stine Nyheim og Team Nightingale
+              tag: innovasjon
     - start: 2025-04-10T08:45
       end: 2025-04-10T15:30
       breaks:
@@ -305,51 +332,51 @@ schedule:
           kind: speech
           title: Paneldebatt
           teams: 
+          recording: 
           ingress: Vi rigger til paneldebatt
           description: |
             Tema er TBA
-          speaker: Sverre og Hanne 
-          tag: Felles
+          speaker: Hanne Gunby og Sverre Coucheron 
+          tag: alle
         - start: 2025-04-10T14:35
           end: 2025-04-10T15:30
           kind: speech
-          title: Felles Locknote
+          title: Locknote
           teams: 
           recording: 
-          ingress: Felles Locknote
+          ingress: info kommer
           description: | 
             TBA
           speaker: To be announce
-          tag: Felles
+          tag: alle
       tracks:
         - room: Storsal 1
           sessions:
-            - start: 2025-04-10T10:00
-              end: 2025-04-10T11:45
-              kind: workshop
-              teams: 
-              title: Sammen om en enklere hverdag
-              ingress: Dette er en kombinert WS og foredrag, som er en videreføring av strategiarbeidet og operasjonalisering av dette. 
-              description: |
-                Det er en mulighet for flere å kunne koble seg på og bidra med erfaringer og innspill. Vi former WS ut i fra hvor vi står etter Samkjøringsuka, så den kan omhandle alt fra visjonen, OKRs, strategiske valg mm - velkommen :)
-              speaker: Agnete Enga og Line Krauss-Larsen 
-              tag: strategi
+            # - start: 2025-04-10T10:00
+            #   end: 2025-04-10T11:45
+            #   kind: workshop
+            #   teams: 
+            #   title: Sammen om en enklere hverdag
+            #   ingress: Dette er en kombinert WS og foredrag, som er en videreføring av strategiarbeidet og operasjonalisering av dette. 
+            #   description: |
+            #     Det er en mulighet for flere å kunne koble seg på og bidra med erfaringer og innspill. Vi former WS ut i fra hvor vi står etter Samkjøringsuka, så den kan omhandle alt fra visjonen, OKRs, strategiske valg mm - velkommen :)
+            #   speaker: Agnete Enga og Line Krauss-Larsen 
+            #   tag: strategi
             - start: 2025-04-10T12:30
               end: 2025-04-10T14:15
               kind: workshop
-              title: I natt jag drömde
+              title: I Natt Jag Drömde
               ingress: Sanntidsjournalen - nye verktøy
               description: |
                 Lavterskel workshop der domeneeksperter får utvide verktøykassa og eksperimentere med nye måter å løse gamle problemer. 
                 Bygger på konseptene presentert i foredrag.
               speaker: Liv Bollevåg, Bjørn Tore Hansen og Eivind Holt
-              tag: Sammarbeid
+              tag: innovasjon, alle
         - room: Storsal 2
           sessions:
             - start: 2025-04-10T10:00
               end: 2025-04-10T11:45
               kind: workshop
-              teams: 
               title: KI-Verktøy
               ingress: Denne økten blir en kombinasjon av foredrag og praktiske øvelser. 
               description: |
@@ -357,7 +384,7 @@ schedule:
                 Hans Martin har bred erfaring i bruk av KI-verktøy i arbeidshverdagen, kom og bli inspirert! 
                 Denne økten passer for alle.
               speaker: Hans Martin Cramer
-              tag: KI, Teknologi
+              tag: ki, alle
             - start: 2025-04-10T12:30
               end: 2025-04-10T14:15
               kind: workshop
@@ -366,7 +393,7 @@ schedule:
               description: |
                 
               speaker: Ekstern foredragsholder, TBA
-              tag: KI, Teknologi    
+              tag: ki, utvikling    
         - room: Storsal 3
           sessions:
           - start: 2025-04-10T10:00
@@ -381,17 +408,17 @@ schedule:
               Erfaringer med ulike verktøy/rammeverk (Playwright, Cypress, Selenium, RTL). 
               Vise GUI (recorder) for å lage tester. 
             speaker: Martin Vassbotten
-            tag: QA, Teknologi, Utvikling
+            tag: qa, testing
           - start: 2025-04-10T12:30
             end: 2025-04-10T14:15
             kind: workshop
-            title: Finne problemet i høystakken - hvordan bruke verktøysettet tilgjengelig for å finne ut av feil og ytelsesproblemer
-            ingress: En workshop hvor en ser på hvordan vi kan finne ut av feilsituasjoner og tregheter i Arena og tjenester med bruk av informasjonskildene og det verktøysettet vi har tilgjengelig.
+            title: React Usage - "Skriv bedre React kode"
+            ingress: Det ligger i menneskets natur å være optimistisk.
             description: |
-              Med å bruke verktøysettet vil en innad i team fort kunne vise til detaljer slik at utviklere fort kan identifisere problemer å fikse de for både utviklings- og testmiljøer. 
-              I produksjonsmiljøer vil vi møte på en del av de samme verktøyene så med å lære seg å bruke disse, vil dere som team mer effektivt kunne finne de nødvendige detaljene knyttet til feil og ytelses-utfordringer i produksjon.
-            speaker: Trond Andersen
-            tag: QA
+              Gjennomgang av eksempler på dårlig og bra kode med diskusjoner. "You might not need an effect". 
+              Presentasjon og diskusjon rundt en del tema (komponenters rolle, functional programming, Immutable data, Close coupling, TypeScript, ++)
+            speaker: Henrik Haugberg og Birk B. Eidsvik
+            tag: utvikling, web
         - room: The Social
           sessions:
           - start: 2025-04-10T10:00
@@ -399,23 +426,21 @@ schedule:
             kind: workshop
             teams: 
             title: Bygg med Puls - i Kode
-            ingress: Utviklerne fra Team Assistent skal ha noen praktiske oppgaver rundt AI i DIPS.
+            ingress:  Bli med på en praktisk workshop hvor du bygger med designsystemet vårt, Puls!
             description: |
-              Utviklerne fra Team Assistent skal ha noen praktiske oppgaver rundt AI i DIPS.
-              (Mer beskrivelse kommer)
-            speaker: Team 
-            tag: Teknologi, KI
+              Du får en konkret oppgave å løse ved hjelp av Puls-komponenter, mens vi er til stede for å svare på spørsmål og gi support.)
+            speaker: Alexandra Lo Cascio 
+            tag: utvikling, web
           - start: 2025-04-10T12:30
             end: 2025-04-10T14:15
             kind: workshop
-            title: React Usage - "Skriv bedre React kode"
-            ingress: Det ligger i menneskets natur å være optimistisk.
+            title: Hvordan estimere effektivt - praktisk bruk av rutine og mal for estimering i DIPS
+            ingress: Det ligger i menneskets natur å være optimistisk, og det er lett å overse eller glemme hvilke aktiviteter som inngår i innsiktsarbeid, produktutvikling, kvalitetssikring og leveranse til kunde.
             description: |
-              Gjennomgang av eksempler på dårlig og bra kode med diskusjoner. 
-              "You might not need an effect". 
-              Presentasjon og diskusjon rundt en del tema (komponenters rolle, functional programming, Immutable data, Close coupling, TypeScript, ++)
-            speaker: Henrik Haugberg og Birk B. Eidsvik
-            tag: Produkt
+              Vi har derfor laget en rutine med tilhørende mal som skal gjøre det enklere å gjennomføre estimering i utviklingsteam, f.eks. når man utarbeider tilbud til kunde eller når et team ønsker å få bedre oversikt og kontroll på omfanget av utviklingsoppgaver. 
+              Vi kommer i workshopen til å gå igjennom hvorfor vi estimerer, hva man kan (og hva man ikke bør) bruke estimater til, før vi øver oss på å bruke malen og rutinen gjennom en praktisk oppgave.
+            speaker: Kjell Arne Fransplass, Trond Fredrik og Siv Marie Lien
+            tag: prosess, metode
         - room: The Saltstraumen
           sessions:
           - start: 2025-04-10T10:00
@@ -431,14 +456,13 @@ schedule:
           - start: 2025-04-10T12:30
             end: 2025-04-10T14:15
             kind: workshop
-            title: Hvordan estimere effektivt - praktisk bruk av rutine og mal for estimering i DIPS
-            ingress: Det ligger i menneskets natur å være optimistisk.
+            title: Finne problemet i høystakken - hvordan bruke verktøysettet tilgjengelig for å finne ut av feil og ytelsesproblemer
+            ingress: En workshop hvor en ser på hvordan vi kan finne ut av feilsituasjoner og tregheter i Arena og tjenester med bruk av informasjonskildene og det verktøysettet vi har tilgjengelig.
             description: |
-              Og det er lett å overse eller glemme hvilke aktiviteter som inngår i innsiktsarbeid, produktutvikling, kvalitetssikring og leveranse til kunde. 
-              Vi har derfor laget en rutine med tilhørende mal som skal gjøre det enklere å gjennomføre estimering i utviklingsteam, f.eks. når man utarbeider tilbud til kunde eller når et team ønsker å få bedre oversikt og kontroll på omfanget av utviklingsoppgaver. 
-              Vi kommer i workshopen til å gå igjennom hvorfor vi estimerer, hva man kan (og hva man ikke bør) bruke estimater til, før vi øver oss på å bruke malen og rutinen gjennom en praktisk oppgave.
-            speaker: Kjell Arne Fransplass, Trond Fredrik og Siv Marie Lien
-            tag: Produkt
+              Med å bruke verktøysettet vil en innad i team fort kunne vise til detaljer slik at utviklere fort kan identifisere problemer å fikse de for både utviklings- og testmiljøer. 
+              I produksjonsmiljøer vil vi møte på en del av de samme verktøyene så med å lære seg å bruke disse, vil dere som team mer effektivt kunne finne de nødvendige detaljene knyttet til feil og ytelses-utfordringer i produksjon.
+            speaker: Trond Andersen
+            tag: qa, testing, ytelse
         - room: Salten
           sessions:
           - start: 2025-04-10T10:00
@@ -453,7 +477,7 @@ schedule:
 
               Alle som deltar får med seg en bok
             speaker: Linda Vik og Cathrine Aldorino
-            tag: Sammarbeid, Produkt, Ekstern
+            tag: samarbeid, prosess, Ekstern
           - start: 2025-04-10T12:30
             end: 2025-04-10T14:15
             kind: workshop
@@ -462,4 +486,4 @@ schedule:
             description: |
               I denne workshopen får du introduksjon til et verktøy teamet kan bruke i prioriteringsfasen, som gjør det lettere å vite selv og kommunisere ut hva vi ønsker å oppnå.
             speaker: Lisa F. Haugen
-            tag: Prosess, Strategi, Produkt
+            tag: prosess, strategi, design
