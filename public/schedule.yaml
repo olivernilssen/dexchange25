@@ -1,12 +1,12 @@
 schedule:  
     days:
     - date: 2025-04-09
-      start: 2025-04-09T08:00
+      start: 2025-04-09T10:00
       end: 2025-04-09T17:00
       breaks:
-        - start: 2025-04-09T10:30
+        - start: 2025-04-09T10:00
           end: 2025-04-09T11:00
-          title: Registrering, Kaffe og mingling, 30 min til 1 time
+          title: Registrering, Kaffe og mingling, 1 time
         - start: 2025-04-09T12:00
           end: 2025-04-09T12:45
           title: Lunsj 45 minutter
@@ -39,7 +39,7 @@ schedule:
           end: 2025-04-09T12:00
           kind: speech
           title: Keynote - En lysende fremtid for DIPS
-          teams: 
+          teams: https://localhost
           recording: 
           ingress: Christin har jobbet som softwareutvikler i 20 år. Hun har erfaring fra både privat og offentlig sektor, som fast ansatt og som konsulent i både store og små firmaer. I dag jobber hun i konsulent-selskapet Kodemaker. Hun er kjent for en engasjerende fortellerstil, både skriftlig og på scenen, og liker å sette ting på spissen for å få folk til å se ting fra nye vinkler og utfordre etablerte sannheter.
           description: |

@@ -22,27 +22,35 @@ export default function SessionCard({
   isCompleted,
   showRoom = false
 }: SessionCardProps) {
-  // Determine card styling based on session type and whether it's common
-  let cardStyles = '';
-  let timeTextColor = '';
+  // Define base colors (without hover)
+  const baseClasses = isCommon
+    ? 'border-l-4 border-[#f0b429] bg-[#fffbf0]'
+    : session.kind === 'workshop'
+      ? 'border-l-4 border-[#e05252] bg-[#fff5f5]'
+      : 'border-l-4 border-[#3949ab] bg-[#f5f7ff]';
   
-  if (isCommon) {
-    // Common session styling (golden/yellow theme)
-    cardStyles = 'border-l-4 border-[#f0b429] bg-[#fffbeb]';
-    timeTextColor = 'text-[#b88a00]';
-  } else if (session.kind === 'workshop') {
-    // Workshop styling (red theme)
-    cardStyles = 'border-l-4 border-[#e05252] bg-[#fff0f0]';
-    timeTextColor = 'text-[#e05252]';
-  } else {
-    // Default/speech styling (blue theme)
-    cardStyles = 'border-l-4 border-[#3949ab] bg-[#f0f4ff]';
-    timeTextColor = 'text-[#3949ab]';
-  }
+  // Define hover colors separately
+  const hoverClasses = isCommon
+    ? 'hover:bg-[#fff7e0]' // Darker yellow for common
+    : session.kind === 'workshop'
+      ? 'hover:bg-[#fff0f0]' // Darker red for workshop
+      : 'hover:bg-[#f0f2fa]'; // Darker blue for talks
+  
+  // Time text color based on session type
+  const timeTextColor = isCommon
+    ? 'text-[#b88a00]'
+    : session.kind === 'workshop'
+      ? 'text-[#e05252]'
+      : 'text-[#3949ab]';
   
   return (
     <div 
-      className={`relative p-3 rounded shadow ${cardStyles} cursor-pointer hover:shadow-md transition-all ${isCompleted ? 'opacity-75' : ''}`}
+      className={`
+        relative rounded shadow cursor-pointer transition-colors
+        ${baseClasses} ${hoverClasses}
+        ${isCompleted ? 'opacity-75' : ''} 
+        h-full flex flex-col pl-4 sm:pl-3
+      `}
       onClick={() => onClick(session)}
     >
       {/* Favorite star button in the top-right corner */}
@@ -52,8 +60,8 @@ export default function SessionCard({
         className="absolute top-2 right-2" 
       />
       
-      {/* Time and room display at the top of the card - Added pr-10 to prevent overlap */}
-      <div className="flex items-center justify-between mb-2 pr-10">
+      {/* Time and room display at the top of the card */}
+      <div className="flex items-center justify-between mb-2 pr-10 pt-3">
         <div className={`text-xs font-medium ${timeTextColor}`}>
           {formatTime(session.start)} - {formatTime(session.end)}
           {isCompleted && <span className="text-green-500 ml-2">(Completed)</span>}
@@ -66,23 +74,21 @@ export default function SessionCard({
         )}
       </div>
       
-      {/* Title with right padding for star */}
-      <div className="font-bold text-[#333333] pr-8">
+      {/* Title with right padding for star and responsive font size */}
+      <div className="font-bold text-[#333333] pr-8 text-sm sm:text-base">
         {session.title}
       </div>
       
       {/* Speaker info */}
       {session.speaker && (
-        <div className="text-[#333333] mt-1">{session.speaker}</div>
+        <div className="text-[#333333] mt-1 text-xs sm:text-sm">
+          {session.speaker}
+        </div>
       )}
       
-      {/* Tags and badges section */}
-      <div className="flex flex-wrap items-center gap-1 mt-2">
-        
-        {/* Session type badge */}
+      {/* Tags and badges section - more bottom padding */}
+      <div className="flex flex-wrap items-center gap-1 mt-auto pt-2 pb-3">
         {session.kind && <SessionTypeBadge type={session.kind} />}
-        
-        {/* Content tags */}
         {session.tag && <SessionTags tags={session.tag} />}
       </div>
     </div>
