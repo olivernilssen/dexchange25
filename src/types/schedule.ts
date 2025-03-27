@@ -10,7 +10,7 @@ export interface Session {
   tag?: string;
   teams?: string;    // URL to Teams meeting
   recording?: string; // URL to session recording
-  room: string;      // Now required, not optional
+  room?: string;      // Now optional, not required
 }
 
 export interface Track {
@@ -18,15 +18,18 @@ export interface Track {
   sessions: Session[];
 }
 
+// Move Break interface here from sessionProcessing.ts
+export interface Break {
+  title: string;
+  start: string;
+  end: string;
+}
+
 export interface Day {
   date: string;
   start: string;
   end: string;
-  breaks?: {
-    title: string;
-    start: string;
-    end: string;
-  }[];
+  breaks?: Break[]; // Now references the Break interface
   commonSessions?: Session[];
   tracks?: Track[];
 }

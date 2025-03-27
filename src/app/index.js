@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
-import EventSchedule from '../components/Schedule/old/EventSchedule';
+import EventSchedule from '../components/Sschedule/old/EventSchedule';
 import { parseScheduleData } from '../utils/scheduleData';
 
 export default function Home() {

@@ -1,17 +1,28 @@
-import { RoomBadge } from '../../utils/roomUtils';
+import React from 'react';
+import RoomBadge from '../ui/RoomBadge';
+import { getRoomNameForSession } from '@/config/rooms';
 
 interface RoomDisplayProps {
   room: string;
   isCommon?: boolean;
-  dayIndex?: number;
+  dayIndex: number;
 }
 
-export default function RoomDisplay({ room, isCommon = false, dayIndex = 0 }: RoomDisplayProps) {
-  // Handle common sessions display (Arena or Storsalen based on day)
+export default function RoomDisplay({ 
+  room, 
+  isCommon = false,
+  dayIndex = 0 
+}: RoomDisplayProps) {
+  // Determine the type based on the room and isCommon flag
+  let badgeType: 'common' | 'workshop' | 'speech';
+  
   if (isCommon) {
-    return <RoomBadge room={dayIndex === 0 ? 'Arena' : 'Storsalen'} />;
+    badgeType = 'common';
+  } else if (room.toLowerCase().includes('workshop')) {
+    badgeType = 'workshop';
+  } else {
+    badgeType = 'speech';
   }
   
-  // Regular room
-  return <RoomBadge room={room} />;
+  return <RoomBadge room={getRoomNameForSession(dayIndex, room)} type={badgeType} />;
 }

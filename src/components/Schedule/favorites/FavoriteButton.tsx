@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useFavorites } from '../../contexts/FavoritesContext';
-import { Session } from '../../types/schedule';
+import { useFavorites } from '../../../contexts/FavoritesContext';
+import { Session } from '../../../types/schedule';
 
 interface FavoriteButtonProps {
   session: Session;

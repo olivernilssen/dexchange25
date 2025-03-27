@@ -1,26 +1,6 @@
 import { getTimeFromString, formatTime } from './timeUtils';
-import { Day, Session } from '../types/schedule';
-
-// Type definitions moved to a separate file
-export interface Break {
-  title: string;
-  start: string;
-  end: string;
-}
-
-export type TimelineItem = (
-  | { isBreak: false; isCommon?: boolean; room: string } & Session
-  | { isBreak: true } & Break
-) & {
-  startTime: number;
-  endTime: number;
-};
-
-export type TimeBlock = {
-  time: number;
-  displayTime: string;
-  items: any[];
-};
+import { Day, Session, Break } from '../types/schedule';
+import { TimelineItem, TimeBlock } from '../types/timeline';
 
 /**
  * Collects all sessions and breaks into a single array
@@ -75,7 +55,7 @@ export function collectTimelineItems(day: Day, breaks: Break[]): TimelineItem[] 
 }
 
 /**
- * Find connected sessions across the timeline
+ * Find connected sessions across the timeline (sessions that start immediately after another ends)
  */
 export function findConnectedSessions(items: TimelineItem[]): {
   connectedGroups: (TimelineItem & { isBreak: false })[][];
@@ -100,9 +80,9 @@ export function findConnectedSessions(items: TimelineItem[]): {
     });
     
     // Find connected sessions (sessions that happen back-to-back in the same room)
-    const connectedGroups: (TimelineItem & { isBreak: false })[][] = [];
-    const processedItems = new Set<string>();
-    
+  const connectedGroups: (TimelineItem & { isBreak: false })[][] = [];
+  const processedItems = new Set<string>();
+  
     Object.entries(sessionsByRoom).forEach(([room, roomSessions]) => {
       // Skip if only one session in this room
       if (roomSessions.length <= 1) return;
@@ -127,7 +107,7 @@ export function findConnectedSessions(items: TimelineItem[]): {
           
           for (let i = 0; i < unprocessedSessions.length; i++) {
             const nextSession = unprocessedSessions[i];
-            
+      
             if (nextSession.start === lastSessionInGroup.end && 
                 (!isCommonRoom || (!!nextSession.isCommon === !!lastSessionInGroup.isCommon))) {
               
@@ -140,13 +120,13 @@ export function findConnectedSessions(items: TimelineItem[]): {
           }
         }
         
-        if (currentGroup.length > 1) {
+    if (currentGroup.length > 1) {
           currentGroup.forEach(session => {
             const sessionKey = `${session.title}-${session.start}`;
             processedItems.add(sessionKey);
           });
           
-          connectedGroups.push(currentGroup);
+      connectedGroups.push(currentGroup);
         }
       }
     });
@@ -162,7 +142,7 @@ export function findConnectedSessions(items: TimelineItem[]): {
 }
 
 /**
- * Process all items into time blocks
+ * Create time blocks by grouping items by their start time
  */
 export function createTimeBlocks(
   allItems: TimelineItem[], 
@@ -192,34 +172,16 @@ export function createTimeBlocks(
       startTime: firstItem.startTime,
       endTime: lastItem.endTime,
       group: group,
-      room: firstItem.room, // Now TypeScript knows this is safe
+      room: firstItem.room,
       start: firstItem.start,
       end: lastItem.end,
       title: firstItem.title
     };
   }).filter((item): item is NonNullable<typeof item> => item !== null);
   
-  // Combine and sort
+  // Combine and sort by start time only - we'll handle room ordering in the TimeBlock component
   const combinedItems = [...filteredItems, ...connectedPlaceholders];
-  combinedItems.sort((a, b) => {
-    // Sort primarily by start time
-    const startDiff = a.startTime - b.startTime;
-    if (startDiff !== 0) return startDiff;
-    
-    // If start times are equal, sort breaks before sessions
-    if (a.isBreak && !b.isBreak) return -1;
-    if (!a.isBreak && b.isBreak) return 1;
-    
-    // Otherwise, sort by room - only for non-break items
-    if (!a.isBreak && !b.isBreak) {
-      // Both are session items, safe to access room
-      const roomA = 'room' in a ? a.room : '';
-      const roomB = 'room' in b ? b.room : '';
-      return roomA.localeCompare(roomB);
-    }
-    
-    return 0;
-  });
+  combinedItems.sort((a, b) => a.startTime - b.startTime);
   
   // Create time blocks
   const timeBlocks: TimeBlock[] = [];
@@ -231,10 +193,7 @@ export function createTimeBlocks(
     if (currentTime === null || item.startTime !== currentTime) {
       // When time changes, push the current block and start a new one
       if (currentBlock.length > 0 && currentTime !== null) {
-        const displayTime = currentBlock[0].isBreak
-          ? formatTime(currentBlock[0].start)
-          : formatTime(currentBlock[0].start);
-          
+        const displayTime = formatTime(currentBlock[0].start);
         timeBlocks.push({
           time: currentTime,
           displayTime,
@@ -252,10 +211,7 @@ export function createTimeBlocks(
   
   // Add the last block
   if (currentBlock.length > 0 && currentTime !== null) {
-    const displayTime = currentBlock[0].isBreak
-      ? formatTime(currentBlock[0].start)
-      : formatTime(currentBlock[0].start);
-      
+    const displayTime = formatTime(currentBlock[0].start);
     timeBlocks.push({
       time: currentTime,
       displayTime,
@@ -264,4 +220,11 @@ export function createTimeBlocks(
   }
   
   return timeBlocks;
+}
+
+// Helper function to convert minutes back to formatted time string (HH:MM)
+function formatTimeFromMinutes(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
 }
