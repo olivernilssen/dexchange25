@@ -17,15 +17,15 @@ export default function DayTabs({
 }: DayTabsProps) {
   return (
     <div className="mb-3">
-      <div className="flex border-b border-[#8991cd] overflow-x-auto">
+      <div className="flex border-b border-primary-light overflow-x-auto">
         {/* Regular day tabs */}
         {days.map((day, index) => (
           <button
             key={index}
             className={`px-6 py-3 font-medium whitespace-nowrap focus:outline-none ${
               !showFavorites && activeDay === index 
-                ? 'border-b-2 border-[#081079] text-[#081079]' 
-                : 'text-[#6c7cbc] hover:text-[#081079]'
+                ? 'border-b-2 border-primary-main text-primary-main' 
+                : 'text-primary-light hover:text-primary-main'
             }`}
             onClick={() => {
               onDayChange(index);
@@ -40,8 +40,8 @@ export default function DayTabs({
         <button
           className={`px-6 py-3 font-medium whitespace-nowrap focus:outline-none ml-auto ${
             showFavorites
-              ? 'border-b-2 border-[#081079] text-[#081079]' 
-              : 'text-[#6c7cbc] hover:text-[#081079]'
+              ? 'border-b-2 border-primary-main text-primary-main' 
+              : 'text-primary-light hover:text-primary-main'
           }`}
           onClick={onFavoritesToggle}
         >

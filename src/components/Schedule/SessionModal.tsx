@@ -1,11 +1,10 @@
 import { Session } from '../../types/schedule';
 import { formatTime, getTagColor } from '../../utils/timeUtils';
-import FavoriteButton from './FavoriteButton';
-import Link from 'next/link';
+import FavoriteButton from './favorites/FavoriteButton';
 import { ExternalLink, PlayCircle, Video } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { RoomBadge } from '../../utils/roomUtils';
 import RoomDisplay from './RoomDisplay';
+import { getRoomNameForSession } from '@/config/rooms';
 
 interface SessionModalProps {
   session: Session & { room?: string } | null;
@@ -89,7 +88,7 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
               
               {session.room && (
                 <RoomDisplay 
-                  room={session.room}
+                  room={getRoomNameForSession(dayIndex, session.room)}
                   isCommon={isCommon}
                   dayIndex={dayIndex}
                 />

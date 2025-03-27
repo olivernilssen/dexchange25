@@ -1,13 +1,11 @@
 import React from 'react';
-import { Session } from '../../types/schedule';
-import { formatTime } from '../../utils/timeUtils';
-import SessionTags from './SessionTags';
-import SessionTypeBadge from './SessionTypeBadge';
-import FavoriteButton from './FavoriteButton';
-import { RoomBadge } from '../../utils/roomUtils';
-import { getSessionCardStyles } from '../../styles/styleUtils';
-import { SESSION_COLORS } from '../../styles/theme';
-import RoomDisplay from './RoomDisplay';
+import { Session } from '../../../types/schedule';
+import SessionTags from '../../ui/SessionTags';
+import FavoriteButton from '../favorites/FavoriteButton';
+import RoomDisplay from '../RoomDisplay';
+import SessionCard from '../../ui/SessionCard';
+import SessionTimeDisplay from '../../ui/SessionTimeDisplay';
+import SessionTypeBadge from '../../ui/SessionTypeBadge';
 
 interface ConnectedSessionsCardProps {
   sessions: Array<Session & { room?: string }>;
@@ -29,11 +27,13 @@ export default function ConnectedSessionsCard({
   if (!sessions.length) return null;
   
   const firstSession = sessions[0];
-  const isWorkshop = firstSession.kind === 'workshop';
-  const styles = getSessionCardStyles(isCommon, isWorkshop);
+  const type = isCommon ? 'common' : firstSession.kind === 'workshop' ? 'workshop' : 'speech';
   
   return (
-    <div className={`${styles.card} h-full flex flex-col pl-4 sm:pl-3`}>
+    <SessionCard 
+      type={type}
+      className="h-full flex flex-col pl-4 sm:pl-3"
+    >
       {/* Favorite star button in the top-right corner for the entire group */}
       <FavoriteButton 
         session={firstSession} 
@@ -46,46 +46,42 @@ export default function ConnectedSessionsCard({
         {sessions.map((session, index) => {
           const isLastSession = index === sessions.length - 1;
           
-          // Get the time text color directly
-          const timeTextColor = isCommon
-            ? SESSION_COLORS.common.textColor
-            : session.kind === 'workshop'
-              ? SESSION_COLORS.workshop.textColor
-              : SESSION_COLORS.talk.textColor;
-          
-          // Or simplify by using the styles from the first session
-          // const timeTextColor = styles.timeText;
-          
           return (
             <div 
               key={index}
-              className={`pt-3 ${isLastSession ? 'pb-4' : 'pb-3'} cursor-pointer ${styles.hover} transition-colors`}
+              className={`pt-3 ${isLastSession ? 'pb-4' : 'pb-3'} cursor-pointer ${
+                type === 'workshop' ? 'hover:bg-workshop-hover' : 
+                type === 'speech' ? 'hover:bg-speech-hover' : 
+                'hover:bg-common-hover'
+              } transition-colors`}
               onClick={() => onClick(session)}
             >
               {/* Time and room info */}
               <div className="flex items-center justify-between mb-1 pr-10">
-                <div className={`text-xs font-medium ${timeTextColor}`}>
-                  {formatTime(session.start)} - {formatTime(session.end)}
-                  {isCompleted && <span className="text-green-500 ml-2">(Completed)</span>}
-                </div>
+                <SessionTimeDisplay
+                  startTime={session.start}
+                  endTime={session.end}
+                  isCompleted={isCompleted}
+                  type={type}
+                />
                 
                 {showRoom && index === 0 && session.room && (
-                    <RoomDisplay 
-                        room={session.room}
-                        isCommon={isCommon}
-                        dayIndex={dayIndex}
-                    />
+                  <RoomDisplay 
+                    room={session.room}
+                    isCommon={isCommon}
+                    dayIndex={dayIndex}
+                  />
                 )}
               </div>
               
               {/* Session title with reduced font size on mobile */}
-              <div className="font-bold text-[#333333] pr-8 text-sm sm:text-base">
+              <div className="font-bold text-neutral-text-primary pr-8 text-sm sm:text-base">
                 {session.title}
               </div>
               
               {/* Speaker info */}
               {session.speaker && (
-                <div className="text-[#333333] mt-1 text-xs sm:text-sm">
+                <div className="text-neutral-text-secondary mt-1 text-xs sm:text-sm">
                   {session.speaker}
                 </div>
               )}
@@ -99,6 +95,6 @@ export default function ConnectedSessionsCard({
           );
         })}
       </div>
-    </div>
+    </SessionCard>
   );
 }

@@ -1,56 +1,39 @@
 // Export the formatTime function
-export function formatTime(timeString: string) {
+export function formatTime(timeString: string): string {
   if (!timeString) return '';
   
-  // Handle new ISO format (with T)
-  if (timeString.includes('T')) {
-    const parts = timeString.split('T');
-    if (parts.length === 2) {
-      return parts[1]; // Already in HH:MM format
-    }
+  // Handle simple HH:MM format
+  if (timeString.match(/^\d{1,2}:\d{2}$/)) {
+    return timeString;
   }
   
-  // Handle legacy format (with colon)
-  const parts = timeString.split(':');
-  if (parts.length < 2) return timeString;
-  return parts[1].replace('.', ':');
+  try {
+    // Try to parse as ISO date if it's a full date string
+    const date = new Date(timeString);
+    if (!isNaN(date.getTime())) {
+      return date.toLocaleTimeString('nb-NO', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+      });
+    }
+  } catch (e) {
+    console.error('Error formatting time:', e);
+  }
+  
+  // Return original if parsing fails
+  return timeString;
 }
 
-// Export the getTimeFromString function
-export function getTimeFromString(timeString: string) {
+export function getTimeFromString(timeString: string): number {
   if (!timeString) return 0;
+  
   try {
-    // Handle new ISO format (with T)
-    if (timeString.includes('T')) {
-      const parts = timeString.split('T');
-      if (parts.length === 2) {
-        const [hours, minutes] = parts[1].split(':').map(Number);
-        return (hours * 60) + minutes;
-      }
-    }
-    
-    // Handle legacy format
-    if (timeString.includes(':')) {
-      const parts = timeString.split(':');
-      if (parts.length >= 2) {
-        let timePart = parts[1];
-        let hours, minutes;
-        
-        if (timePart.includes('.')) {
-          [hours, minutes] = timePart.split('.').map(Number);
-        } else if (timePart.includes(':')) {
-          [hours, minutes] = timePart.split(':').map(Number);
-        } else {
-          hours = parseInt(timePart, 10);
-          minutes = 0;
-        }
-        
-        return (hours * 60) + minutes;
-      }
-    }
-    return 0;
-  } catch (error) {
-    console.error(`Error parsing time string: ${timeString}`, error);
+    // If format is HH:MM
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return hours * 60 + minutes;
+  } catch (e) {
+    console.error('Error parsing time:', e);
     return 0;
   }
 }

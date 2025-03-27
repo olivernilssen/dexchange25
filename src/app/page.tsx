@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import ScheduleView from '../components/Schedule/ScheduleView';
+import Header from '../components/layout/Header';
+import ScheduleView from '../components/Sschedule/ScheduleView';
 import { FavoritesProvider } from '../contexts/FavoritesContext';
 import yaml from 'js-yaml';
 import { ScheduleData } from '../types/schedule';

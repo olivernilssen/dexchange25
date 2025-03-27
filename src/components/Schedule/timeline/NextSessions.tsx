@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import { Day, Session } from '../../types/schedule';
-import { formatTime, getTagColor, getTimeFromString } from '../../utils/timeUtils';
+import { Day, Session } from '../../../types/schedule';
+import { formatTime, getTagColor, getTimeFromString } from '../../../utils/timeUtils';
 import NextSessionsButton from './NextSessionsButton';
-import { useUpcomingSessions } from '../../hooks/useUpcomingSessions';
-import ConnectedSessionsCard from './ConnectedSessionsCard';
-import SessionModal from './SessionModal';
-import SessionCard from './SessionCard';
+import { useUpcomingSessions } from '../../../hooks/useUpcomingSessions';
+import ConnectedSessionsCard from '../cards/ConnectedSessionsCard';
+import SessionModal from '../SessionModal';
+import SessionCard from '../cards/SessionCard';
+import { getRoomNameForSession } from '@/config/rooms';
 
 interface NextSessionsProps {
   day: Day;
@@ -109,7 +110,7 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                       <div className="border-b border-l-[#081079] text-[#081079] py-2 px-4 font-bold">
                         {/* Display correct room name for common sessions based on day */}
                         {roomName === 'Felles' 
-                          ? (dayIndex === 0 ? 'Arena' : 'Storsalen')
+                          ? (getRoomNameForSession(dayIndex, roomName))
                           : roomName
                         } 
                         {sessions.length > 1 && (
@@ -128,7 +129,7 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                               setSelectedSession(session);
                               setSelectedConnectedSessions(sessions);
                             }}
-                            isCommon={roomName === 'Felles'}
+                            isCommon={roomName === getRoomNameForSession(dayIndex, roomName)}
                             dayIndex={dayIndex}
                             showRoom={false}
                           />
@@ -140,7 +141,7 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                                 key={index}
                                 session={session}
                                 onClick={handleSessionClick}
-                                isCommon={roomName === 'Felles'}
+                                isCommon={roomName === getRoomNameForSession(dayIndex, roomName)}
                                 dayIndex={dayIndex}
                                 isCompleted={false}
                                 showRoom={false}

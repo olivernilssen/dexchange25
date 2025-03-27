@@ -1,11 +1,12 @@
 import { useState, useMemo } from 'react';
-import { useFavorites } from '../../contexts/FavoritesContext';
-import { getTimeFromString, formatTime } from '../../utils/timeUtils';
-import { Day, Session, ScheduleData } from '../../types/schedule';
-import SessionCard from './SessionCard';
-import ConnectedSessionsCard from './ConnectedSessionsCard';
-import SessionModal from './SessionModal';
-import ScrollManager from '../ScrollManager';
+import { useFavorites } from '../../../contexts/FavoritesContext';
+import { getTimeFromString, formatTime } from '../../../utils/timeUtils';
+import { Day, Session, ScheduleData } from '../../../types/schedule';
+import SessionCard from '../cards/SessionCard';
+import ConnectedSessionsCard from '../cards/ConnectedSessionsCard';
+import SessionModal from '../SessionModal';
+import ScrollManager from '../../ScrollManager';
+import { getRoomNameForSession } from '@/config/rooms';
 
 interface FavoriteSessionItem {
   session: Session & { room?: string; isCommon?: boolean };
@@ -105,7 +106,7 @@ export default function FavoritesView({ scheduleData, isSessionCompleted }: Favo
       const sessionsByRoom: Record<string, FavoriteSessionItem[]> = {};
       
       items.forEach(item => {
-        const room = item.session.room || '';
+        const room = getRoomNameForSession(dayIndex, item.session.room || 'Ukjent');
         if (!sessionsByRoom[room]) {
           sessionsByRoom[room] = [];
         }
