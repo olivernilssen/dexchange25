@@ -3,9 +3,9 @@ import { getTimeFromString } from '../../utils/timeUtils';
 import { Day, Session, ScheduleData } from '../../types/schedule';
 import DayTabs from './DayTabs';
 import ChronologicalTimeline from './ChronologicalTimeline';
-import SessionModal from './SessionModal';
-import NextSessions from './NextSessions';
-import FavoritesView from './FavoritesView';
+import SessionModal from '../session/SessionModal';
+import NextSessions from '../nextSession/NextSessions';
+import FavoritesView from '../favorite/FavoritesView';
 import ScrollManager from '../ScrollManager';
 
 interface ScheduleViewProps {

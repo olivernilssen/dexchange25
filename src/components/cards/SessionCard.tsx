@@ -1,10 +1,10 @@
 import { formatTime } from '../../utils/timeUtils';
 import { Session } from '../../types/schedule';
-import FavoriteButton from './FavoriteButton';
-import SessionTags from './SessionTags';
-import SessionTypeBadge from './SessionTypeBadge';
+import FavoriteButton from '../ui/FavoriteButton';
+import SessionTags from '../ui/SessionTags';
+import SessionTypeBadge from '../ui/SessionTypeBadge';
 import { getSessionCardStyles } from '../../styles/styleUtils';
-import RoomBadge from './RoomBadge';
+import RoomBadge from '../ui/RoomBadge';
 
 interface SessionCardProps {
   session: Session & { room?: string };

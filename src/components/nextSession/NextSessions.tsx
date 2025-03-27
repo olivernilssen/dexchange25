@@ -5,9 +5,9 @@ import { Day, Session } from '../../types/schedule';
 import { formatTime, getTimeFromString } from '../../utils/timeUtils';
 import NextSessionsButton from './NextSessionsButton';
 import { useUpcomingSessions } from '../../hooks/useUpcomingSessions';
-import ConnectedSessionsCard from './ConnectedSessionsCard';
-import SessionModal from './SessionModal';
-import SessionCard from './SessionCard';
+import ConnectedSessionsCard from '../cards/ConnectedSessionsCard';
+import SessionModal from '../session/SessionModal';
+import SessionCard from '../cards/SessionCard';
 
 interface NextSessionsProps {
   day: Day;

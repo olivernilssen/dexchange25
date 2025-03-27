@@ -1,7 +1,7 @@
 import { Session } from '../../types/schedule';
-import SessionCard from './SessionCard';
-import BreakCard from './BreakCard';
-import ConnectedSessionsCard from './ConnectedSessionsCard';
+import SessionCard from '../cards/SessionCard';
+import BreakCard from '../cards/BreakCard';
+import ConnectedSessionsCard from '../cards/ConnectedSessionsCard';
 import { getTimeFromString } from '../../utils/timeUtils';
 import { TimelineItem } from '../../types/schedule';
 

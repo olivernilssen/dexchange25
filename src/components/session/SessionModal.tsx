@@ -1,10 +1,10 @@
 import { Session } from '../../types/schedule';
 import { formatTime, getTagColor } from '../../utils/timeUtils';
-import FavoriteButton from './FavoriteButton';
+import FavoriteButton from '../ui/FavoriteButton';
 import Link from 'next/link';
 import { ExternalLink, PlayCircle, Video } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import RoomBadge from './RoomBadge';
+import RoomBadge from '../ui/RoomBadge';
 
 interface SessionModalProps {
   session: Session & { room?: string } | null;

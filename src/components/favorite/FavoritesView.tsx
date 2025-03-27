@@ -2,9 +2,9 @@ import { useState, useMemo } from 'react';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { getTimeFromString, formatTime } from '../../utils/timeUtils';
 import { Day, Session, ScheduleData } from '../../types/schedule';
-import SessionCard from './SessionCard';
-import ConnectedSessionsCard from './ConnectedSessionsCard';
-import SessionModal from './SessionModal';
+import SessionCard from '../cards/SessionCard';
+import ConnectedSessionsCard from '../cards/ConnectedSessionsCard';
+import SessionModal from '../session/SessionModal';
 import ScrollManager from '../ScrollManager';
 
 interface FavoriteSessionItem {

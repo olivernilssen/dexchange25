@@ -1,11 +1,11 @@
 import React from 'react';
 import { Session } from '../../types/schedule';
 import { formatTime } from '../../utils/timeUtils';
-import SessionTags from './SessionTags';
-import SessionTypeBadge from './SessionTypeBadge';
-import FavoriteButton from './FavoriteButton';
+import SessionTags from '../ui/SessionTags';
+import SessionTypeBadge from '../ui/SessionTypeBadge';
+import FavoriteButton from '../ui/FavoriteButton';
 import { getSessionCardStyles } from '../../styles/styleUtils';
-import RoomBadge from './RoomBadge';
+import RoomBadge from '../ui/RoomBadge';
 
 interface ConnectedSessionsCardProps {
   sessions: Array<Session & { room?: string }>;
