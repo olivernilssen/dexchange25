@@ -173,8 +173,8 @@ export default function FavoritesView({ scheduleData, isSessionCompleted }: Favo
     return (
       <div className="mt-4 p-8 bg-white border border-gray-200 rounded-lg text-center">
         <div className="text-6xl mb-4">☆</div>
-        <h3 className="text-xl font-bold text-[#081079] mb-2">Ingen favoritter enda</h3>
-        <p className="text-gray-600">
+        <h3 className="text-xl font-bold text-primary-main mb-2">Ingen favoritter enda</h3>
+        <p className="text-neutral-text-secondary">
           Klikk på stjerneikonet i øvre høyre hjørne av en aktivitet for å legge den til i favoritter.
         </p>
       </div>
@@ -223,21 +223,21 @@ export default function FavoritesView({ scheduleData, isSessionCompleted }: Favo
           }, {});
           
           return (
-            <div key={dayIndex} className="border border-[#8991cd] rounded-lg overflow-hidden">
+            <div key={dayIndex} className="border border-speech-light rounded-lg overflow-hidden">
               {/* Day header */}
-              <div className="bg-[#081079] text-white py-2 px-4 font-bold text-lg">
+              <div className="bg-primary-main text-primary-contrast py-2 px-4 font-bold text-lg">
                 Dag {dayIndex + 1} 
-                <span className="ml-2 text-sm bg-white text-[#081079] rounded-full px-2 py-0.5">
+                <span className="ml-2 text-sm bg-white text-primary-main rounded-full px-2 py-0.5">
                   {favoritedSessions.filter(s => s.dayIndex === dayIndex).length} aktiviteter
                 </span>
               </div>
               
-              <div className="p-4 bg-white">
+              <div className="p-4 bg-neutral-card">
                 <div className="space-y-4">
                   {/* Render each time block */}
                   {Object.entries(timeBlocks).map(([time, timeItems]) => (
                     <div key={time} className="time-block">
-                      <h3 className="text-lg font-medium text-[#081079] border-b mb-2">
+                      <h3 className="text-lg font-medium text-primary-main border-b mb-2">
                         {time}
                       </h3>
                       

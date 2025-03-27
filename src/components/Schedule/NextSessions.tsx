@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Day, Session } from '../../types/schedule';
-import { formatTime, getTagColor, getTimeFromString } from '../../utils/timeUtils';
+import { formatTime, getTimeFromString } from '../../utils/timeUtils';
 import NextSessionsButton from './NextSessionsButton';
 import { useUpcomingSessions } from '../../hooks/useUpcomingSessions';
 import ConnectedSessionsCard from './ConnectedSessionsCard';
@@ -75,13 +75,13 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
       {/* Modal with session details - wider on desktop */}
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-          <div className="bg-white w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 sm:rounded-lg rounded-none 
+          <div className="bg-neutral-card w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 sm:rounded-lg rounded-none 
                           max-h-[100vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-xl">
-            <div className="sticky top-0 bg-[#081079] text-white p-4 flex justify-between items-center z-10">
+            <div className="sticky top-0 bg-primary-main text-primary-contrast p-4 flex justify-between items-center z-10">
               <h3 className="text-lg font-bold">Kommende aktiviteter</h3>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gray-200"
+                className="text-primary-contrast hover:text-gray-200"
                 aria-label="Lukk"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,7 +92,7 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
             
             <div className="flex-1 overflow-auto p-4">
               <div className="text-center mb-4">
-                <p className="text-[#081079] font-medium">
+                <p className="text-primary-main font-medium">
                   Aktiviteter som starter {formatTime(nextSessions[0].start)} eller like etter:
                 </p>
               </div>
@@ -104,16 +104,16 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
                   const isConnected = areSessionsConnected(sessions);
                   
                   return (
-                    <div key={roomName} className="h-full border border-gray-200 rounded-lg overflow-hidden">
+                    <div key={roomName} className="h-full border border-neutral-border rounded-lg overflow-hidden">
                       {/* Room header */}
-                      <div className="border-b border-l-[#081079] text-[#081079] py-2 px-4 font-bold">
+                      <div className="border-b border-l-primary-main text-primary-main py-2 px-4 font-bold">
                         {/* Display correct room name for common sessions based on day */}
                         {roomName === 'Felles' 
                           ? (dayIndex === 0 ? 'Arena' : 'Storsalen')
                           : roomName
                         } 
                         {sessions.length > 1 && (
-                          <span className="ml-2 text-sm bg-white border border-[#081079] text-[#081079] rounded-full px-2 py-0.5">
+                          <span className="ml-2 text-sm bg-white border border-primary-main text-primary-main rounded-full px-2 py-0.5">
                             {sessions.length} aktiviteter
                           </span>
                         )}
@@ -155,10 +155,10 @@ export default function NextSessions({ day, dayIndex, currentTime }: NextSession
               </div>
             </div>
             
-            <div className="p-4 border-t border-gray-200 bg-gray-50">
+            <div className="p-4 border-t border-neutral-border bg-neutral-background">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full bg-[#081079] text-white font-medium py-3 px-4 rounded-lg hover:bg-[#060d4d] transition-colors"
+                className="w-full bg-primary-main text-primary-contrast font-medium py-3 px-4 rounded-lg hover:bg-primary-dark transition-colors"
               >
                 Lukk
               </button>

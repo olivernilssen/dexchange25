@@ -3,9 +3,8 @@ import { Session } from '../../types/schedule';
 import FavoriteButton from './FavoriteButton';
 import SessionTags from './SessionTags';
 import SessionTypeBadge from './SessionTypeBadge';
-import { RoomBadge } from '../../utils/roomUtils';
 import { getSessionCardStyles } from '../../styles/styleUtils';
-import RoomDisplay from './RoomDisplay';
+import RoomBadge from './RoomBadge';
 
 interface SessionCardProps {
   session: Session & { room?: string };
@@ -43,11 +42,11 @@ export default function SessionCard({
       <div className="flex items-center justify-between mb-2 pr-10 pt-3">
         <div className={`text-xs font-medium ${styles.timeText}`}>
           {formatTime(session.start)} - {formatTime(session.end)}
-          {isCompleted && <span className="text-green-500 ml-2">(Completed)</span>}
+          {isCompleted && <span className="text-status-success ml-2">(Completed)</span>}
         </div>
         
         {showRoom && session.room && (
-          <RoomDisplay 
+          <RoomBadge 
             room={session.room}
             isCommon={isCommon}
             dayIndex={dayIndex}
@@ -56,13 +55,13 @@ export default function SessionCard({
       </div>
       
       {/* Title with right padding for star and responsive font size */}
-      <div className="font-bold text-[#333333] pr-8 text-sm sm:text-base">
+      <div className="font-bold text-neutral-text-primary pr-8 text-sm sm:text-base">
         {session.title}
       </div>
       
       {/* Speaker info */}
       {session.speaker && (
-        <div className="text-[#333333] mt-1 text-xs sm:text-sm">
+        <div className="text-neutral-text-primary mt-1 text-xs sm:text-sm">
           {session.speaker}
         </div>
       )}

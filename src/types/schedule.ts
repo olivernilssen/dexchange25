@@ -36,3 +36,23 @@ export interface ScheduleData {
     days: Day[];
   };
 }
+
+export interface Break {
+  title: string;
+  start: string;
+  end: string;
+}
+
+export type TimelineItem = (
+  | { isBreak: false; isCommon?: boolean; room: string } & Session
+  | { isBreak: true } & Break
+) & {
+  startTime: number;
+  endTime: number;
+};
+
+export type TimeBlock = {
+  time: number;
+  displayTime: string;
+  items: any[];
+};

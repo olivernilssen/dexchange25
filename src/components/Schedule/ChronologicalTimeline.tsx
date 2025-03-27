@@ -1,8 +1,7 @@
 import { Day, Session } from '../../types/schedule';
 import TimeBlock from './TimeBlock';
+import { Break } from '../../types/schedule';
 import {
-  Break,
-  TimelineItem,
   collectTimelineItems,
   findConnectedSessions,
   createTimeBlocks
@@ -42,9 +41,9 @@ export default function ChronologicalTimeline({
   // Fallback if no time blocks
   if (timeBlocks.length === 0) {
     return (
-      <div className="p-4 bg-gray-100 rounded border">
-        <h3 className="text-lg font-medium">No schedule items found</h3>
-        <p>There are no sessions or breaks scheduled for this day.</p>
+      <div className="p-4 bg-neutral-background rounded border border-neutral-border">
+        <h3 className="text-lg font-medium text-neutral-text-primary">No schedule items found</h3>
+        <p className="text-neutral-text-secondary">There are no sessions or breaks scheduled for this day.</p>
       </div>
     );
   }

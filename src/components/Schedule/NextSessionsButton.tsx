@@ -8,7 +8,7 @@ export default function NextSessionsButton({ count, onClick }: NextSessionsButto
     <div className="fixed bottom-4 right-4 z-40">
       <button 
         onClick={onClick}
-        className="flex items-center justify-center bg-[#e05252] hover:bg-[#c83838] text-white font-bold py-4 px-5 rounded-full shadow-lg text-lg focus:outline-none focus:ring-4 focus:ring-red-300"
+        className="flex items-center justify-center bg-nextButton-main hover:bg-nextButton-hover text-nextButton-text font-bold py-4 px-5 rounded-full shadow-lg text-lg focus:outline-none focus:ring-4 focus:ring-nextButton-light"
         aria-label="Vis neste aktiviteter"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">

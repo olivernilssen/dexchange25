@@ -21,7 +21,7 @@ export const SESSION_COLORS = {
     badgeText: 'text-white',
   },
   // Talk/speech sessions (blue theme)
-  talk: {
+  speech: {
     border: 'border-[#3949ab]',
     bg: 'bg-[#f5f7ff]',
     hoverBg: 'hover:bg-[#f0f2fa]',

@@ -8,7 +8,7 @@ export function getSessionCardStyles(isCommon: boolean, isWorkshop: boolean) {
     ? SESSION_COLORS.common 
     : isWorkshop 
       ? SESSION_COLORS.workshop 
-      : SESSION_COLORS.talk;
+      : SESSION_COLORS.speech;
       
   return {
     card: `${CARD_STYLES.base} ${CARD_STYLES.bordered} ${style.border} ${style.bg}`,
@@ -26,11 +26,8 @@ export function getSessionBadgeStyle(type: string) {
     case 'workshop':
       return 'bg-[#e05252] text-white';
     case 'speech':
-    case 'talk':
     case 'foredrag':
       return 'bg-[#3949ab] text-white';
-    case 'panel':
-      return 'bg-[#0277bd] text-white';
     default:
       return 'bg-gray-200 text-gray-700';
   }

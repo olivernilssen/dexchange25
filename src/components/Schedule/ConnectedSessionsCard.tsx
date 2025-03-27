@@ -4,10 +4,8 @@ import { formatTime } from '../../utils/timeUtils';
 import SessionTags from './SessionTags';
 import SessionTypeBadge from './SessionTypeBadge';
 import FavoriteButton from './FavoriteButton';
-import { RoomBadge } from '../../utils/roomUtils';
 import { getSessionCardStyles } from '../../styles/styleUtils';
-import { SESSION_COLORS } from '../../styles/theme';
-import RoomDisplay from './RoomDisplay';
+import RoomBadge from './RoomBadge';
 
 interface ConnectedSessionsCardProps {
   sessions: Array<Session & { room?: string }>;
@@ -46,15 +44,15 @@ export default function ConnectedSessionsCard({
         {sessions.map((session, index) => {
           const isLastSession = index === sessions.length - 1;
           
-          // Get the time text color directly
-          const timeTextColor = isCommon
-            ? SESSION_COLORS.common.textColor
-            : session.kind === 'workshop'
-              ? SESSION_COLORS.workshop.textColor
-              : SESSION_COLORS.talk.textColor;
+          // Get the session type for color styling
+          const sessionType = isCommon ? 'common' : session.kind || 'speech';
           
-          // Or simplify by using the styles from the first session
-          // const timeTextColor = styles.timeText;
+          // Get appropriate text color from Tailwind config
+          const timeTextColor = sessionType === 'common' 
+            ? 'text-common-text'
+            : sessionType === 'workshop'
+              ? 'text-workshop-text'
+              : 'text-speech-text';
           
           return (
             <div 
@@ -66,11 +64,11 @@ export default function ConnectedSessionsCard({
               <div className="flex items-center justify-between mb-1 pr-10">
                 <div className={`text-xs font-medium ${timeTextColor}`}>
                   {formatTime(session.start)} - {formatTime(session.end)}
-                  {isCompleted && <span className="text-green-500 ml-2">(Completed)</span>}
+                  {isCompleted && <span className="text-status-success ml-2">(Completed)</span>}
                 </div>
                 
                 {showRoom && index === 0 && session.room && (
-                    <RoomDisplay 
+                    <RoomBadge 
                         room={session.room}
                         isCommon={isCommon}
                         dayIndex={dayIndex}
@@ -79,13 +77,13 @@ export default function ConnectedSessionsCard({
               </div>
               
               {/* Session title with reduced font size on mobile */}
-              <div className="font-bold text-[#333333] pr-8 text-sm sm:text-base">
+              <div className="font-bold text-neutral-text-primary pr-8 text-sm sm:text-base">
                 {session.title}
               </div>
               
               {/* Speaker info */}
               {session.speaker && (
-                <div className="text-[#333333] mt-1 text-xs sm:text-sm">
+                <div className="text-neutral-text-primary mt-1 text-xs sm:text-sm">
                   {session.speaker}
                 </div>
               )}

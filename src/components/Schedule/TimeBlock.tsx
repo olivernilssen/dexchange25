@@ -2,8 +2,8 @@ import { Session } from '../../types/schedule';
 import SessionCard from './SessionCard';
 import BreakCard from './BreakCard';
 import ConnectedSessionsCard from './ConnectedSessionsCard';
-import { TimelineItem } from '../../utils/sessionProcessing';
 import { getTimeFromString } from '../../utils/timeUtils';
+import { TimelineItem } from '../../types/schedule';
 
 interface TimeBlockProps {
   block: {
@@ -94,7 +94,7 @@ export default function TimeBlock({
   
   return (
     <div className="time-block mb-6">
-      <h3 className="text-lg font-medium text-[#081079] sticky top-0 bg-white py-1 z-10 border-b">
+      <h3 className="text-lg font-medium text-primary-main sticky top-0 bg-white py-1 z-10 border-b">
         {block.displayTime}
       </h3>
       

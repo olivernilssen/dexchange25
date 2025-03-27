@@ -4,8 +4,7 @@ import FavoriteButton from './FavoriteButton';
 import Link from 'next/link';
 import { ExternalLink, PlayCircle, Video } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { RoomBadge } from '../../utils/roomUtils';
-import RoomDisplay from './RoomDisplay';
+import RoomBadge from './RoomBadge';
 
 interface SessionModalProps {
   session: Session & { room?: string } | null;
@@ -59,19 +58,24 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
   if (!session) return null;
   
   const isWorkshop = session.kind === 'workshop';
-  const accentColor = isWorkshop ? 'border-[#e05252] text-[#e05252]' : 'border-[#3949ab] text-[#3949ab]';
-  const timeTextColor = isWorkshop ? 'text-[#e05252]' : 'text-[#3949ab]';
+  const accentColor = isWorkshop 
+    ? 'border-workshop-main text-workshop-text' 
+    : 'border-speech-main text-speech-text';
+    
+  const timeTextColor = isWorkshop 
+    ? 'text-workshop-text' 
+    : 'text-speech-text';
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center" onClick={onClose}>
       <div 
-        className="bg-white w-full max-w-xl sm:rounded-lg rounded-none max-h-[100vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-xl"
+        className="bg-neutral-card w-full max-w-xl sm:rounded-lg rounded-none max-h-[100vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`p-4 border-b border-gray-100 relative ${accentColor}`}>
+        <div className={`p-4 border-b border-neutral-border relative ${accentColor}`}>
           <button 
             onClick={onClose}
-            className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+            className="absolute right-4 top-4 text-neutral-text-secondary hover:text-neutral-text-primary"
             aria-label="Lukk"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,7 +84,7 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
           </button>
           
           <div className="pr-8">
-            <h2 className="text-xl font-bold text-[#333333]">{session.title}</h2>
+            <h2 className="text-xl font-bold text-neutral-text-primary">{session.title}</h2>
             
             <div className="flex items-center justify-between mt-2">
               <div className={`text-sm font-medium ${timeTextColor}`}>
@@ -88,7 +92,7 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
               </div>
               
               {session.room && (
-                <RoomDisplay 
+                <RoomBadge 
                   room={session.room}
                   isCommon={isCommon}
                   dayIndex={dayIndex}
@@ -97,14 +101,14 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
             </div>
             
             {session.speaker && (
-              <div className="text-[#333333] mt-2">{session.speaker}</div>
+              <div className="text-neutral-text-primary mt-2">{session.speaker}</div>
             )}
           </div>
           
           <div className="flex flex-wrap items-center gap-1 mt-3">
             {session.kind && (
               <span className={`inline-flex items-center px-2 py-0.5 text-xs rounded font-medium ${
-                isWorkshop ? 'bg-[#e05252] text-white' : 'bg-[#3949ab] text-white'
+                isWorkshop ? 'bg-workshop-main text-primary-contrast' : 'bg-speech-main text-primary-contrast'
               }`}>
                 {isWorkshop ? 'workshop' : 'foredrag'}
               </span>
@@ -128,7 +132,7 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
                   href={session.teams} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm px-3 py-2 bg-[#4b53bc] text-white rounded-md hover:bg-[#3a4299] transition-colors"
+                  className="flex items-center gap-2 text-sm px-3 py-2 bg-teams-main text-primary-contrast rounded-md hover:bg-teams-dark transition-colors"
                 >
                   <Video size={16} />
                   Join Teams Meeting
@@ -141,7 +145,7 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
                   href={session.recording} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm px-3 py-2 bg-[#e05252] text-white rounded-md hover:bg-[#c94747] transition-colors"
+                  className="flex items-center gap-2 text-sm px-3 py-2 bg-recording-main text-primary-contrast rounded-md hover:bg-recording-dark transition-colors"
                 >
                   <PlayCircle size={16} />
                   Watch Recording
@@ -154,25 +158,25 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
         
         <div className="p-4 overflow-auto flex-1">
           {session.ingress && (
-            <div className="text-[#333333] font-medium mb-4">{session.ingress}</div>
+            <div className="text-neutral-text-primary font-medium mb-4">{session.ingress}</div>
           )}
           
           {session.description && (
-            <div className="text-[#333333] whitespace-pre-line">{session.description}</div>
+            <div className="text-neutral-text-primary whitespace-pre-line">{session.description}</div>
           )}
           
           {/* Connected sessions section */}
           {connectedSessions && connectedSessions.length > 1 && (
-            <div className="mt-6 border-t border-gray-200 pt-4">
-              <h3 className="font-bold text-[#333333] mb-2">Tilknyttede aktiviteter:</h3>
+            <div className="mt-6 border-t border-neutral-border pt-4">
+              <h3 className="font-bold text-neutral-text-primary mb-2">Tilknyttede aktiviteter:</h3>
               <div className="space-y-2">
                 {connectedSessions.map((connectedSession, index) => (
                   <div 
                     key={index}
                     className={`p-3 rounded border-l-4 ${
                       (connectedSession.title === session.title && connectedSession.start === session.start)
-                        ? 'bg-gray-100 border-[#3949ab]' 
-                        : 'bg-white border-gray-200 hover:bg-gray-50 cursor-pointer'
+                        ? 'bg-neutral-background border-speech-main' 
+                        : 'bg-neutral-card border-neutral-border hover:bg-neutral-background cursor-pointer'
                     }`}
                     onClick={() => {
                       if (!(connectedSession.title === session.title && connectedSession.start === session.start)) {
@@ -187,8 +191,8 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
                       }
                     }}
                   >
-                    <div className="font-medium">{connectedSession.title}</div>
-                    <div className="text-sm text-gray-600">
+                    <div className="font-medium text-neutral-text-primary">{connectedSession.title}</div>
+                    <div className="text-sm text-neutral-text-secondary">
                       {formatTime(connectedSession.start)} - {formatTime(connectedSession.end)}
                     </div>
                   </div>
@@ -198,16 +202,16 @@ export default function SessionModal({ session, connectedSessions, onClose, dayI
           )}
         </div>
         
-        <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
+        <div className="p-4 border-t border-neutral-border bg-neutral-background flex justify-between items-center">
           <FavoriteButton 
             session={session} 
             dayIndex={dayIndex} 
-            className="text-gray-400"
+            className="text-neutral-text-secondary"
           />
           
           <button
             onClick={onClose}
-            className="bg-[#081079] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#060d4d] transition-colors"
+            className="bg-primary-main text-primary-contrast font-medium py-2 px-4 rounded-lg hover:bg-primary-dark transition-colors"
           >
             Lukk
           </button>

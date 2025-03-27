@@ -1,26 +1,6 @@
 import { getTimeFromString, formatTime } from './timeUtils';
 import { Day, Session } from '../types/schedule';
-
-// Type definitions moved to a separate file
-export interface Break {
-  title: string;
-  start: string;
-  end: string;
-}
-
-export type TimelineItem = (
-  | { isBreak: false; isCommon?: boolean; room: string } & Session
-  | { isBreak: true } & Break
-) & {
-  startTime: number;
-  endTime: number;
-};
-
-export type TimeBlock = {
-  time: number;
-  displayTime: string;
-  items: any[];
-};
+import { Break, TimelineItem, TimeBlock } from '../types/schedule';
 
 /**
  * Collects all sessions and breaks into a single array

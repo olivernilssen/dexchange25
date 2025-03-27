@@ -65,7 +65,7 @@ export default function FavoriteButton({
   return (
     <button 
       onClick={handleFavoriteClick}
-      className={`text-2xl text-yellow-500 hover:text-yellow-600 ${className}`}
+      className={`text-2xl text-favourite-star hover:text-favourite-StarHover ${className}`}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     >

@@ -10,9 +10,9 @@ interface BreakCardProps {
 
 export default function BreakCard({ breakItem }: BreakCardProps) {
   return (
-    <div className="relative p-3 bg-[#f8f0e5] rounded border-l-4 border-[#c98376] text-sm shadow-sm w-full">
-      <div className="font-medium text-[#c98376]">{breakItem.title}</div>
-      <div className="text-[#6c7cbc] text-xs mt-1">
+    <div className="relative p-3 bg-break2-light rounded border-l-4 border-break2-main text-sm shadow-sm w-full">
+      <div className="font-medium text-break2-text">{breakItem.title}</div>
+      <div className="text-speech-main text-xs mt-1">
         {formatTime(breakItem.start)} - {formatTime(breakItem.end)}
       </div>
     </div>
