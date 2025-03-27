@@ -11,14 +11,19 @@ const ROOM_COLORS: Record<string, RoomColorScheme> = {
   default: { bg: 'bg-gray-600', text: 'text-white' },
   
   // Predefined room colors - adjust these to match your actual room names
-  'Felles': { bg: 'bg-[#f0b429]', text: 'text-white' },
-  'Room 1': { bg: 'bg-blue-600', text: 'text-white' },
-  'Room 2': { bg: 'bg-purple-600', text: 'text-white' },
-  'Room 3': { bg: 'bg-green-600', text: 'text-white' },
-  'Room 4': { bg: 'bg-red-600', text: 'text-white' },
-  'Room 5': { bg: 'bg-teal-600', text: 'text-white' },
-  'Workshop': { bg: 'bg-pink-600', text: 'text-white' },
-};
+  'Felles': { bg: 'bg-blue-600', text: 'text-white' },
+  'Arena': { bg: 'bg-blue-600', text: 'text-white' },
+  'Klasserom': { bg: 'bg-purple-600', text: 'text-white' },
+  'Kantina': { bg: 'bg-green-600', text: 'text-white' },
+  'Landegode': { bg: 'bg-lime-600', text: 'text-white' },
+  'Storsalen': { bg: 'bg-yellow-600', text: 'text-white' },
+  'Storsal 1': { bg: 'bg-purple-600', text: 'text-white' },
+  'Storsal 2': { bg: 'bg-green-600', text: 'text-white' },
+  'Storsal 3': { bg: 'bg-lime-600', text: 'text-white' },
+  'The Social': { bg: 'bg-emerald-600', text: 'text-white' },
+  'Saltstraumen': { bg: 'bg-fuchsia-600', text: 'text-white' },
+  'Salten': { bg: 'bg-violet-600', text: 'text-white' },
+  };
 
 // Algorithmic room coloring for rooms not in the predefined list
 const FALLBACK_COLORS: RoomColorScheme[] = [

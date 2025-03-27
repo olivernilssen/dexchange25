@@ -28,7 +28,7 @@ export default function SessionCard({
   
   return (
     <div 
-      className={`${styles.card} ${styles.hover} h-full flex flex-col pl-4 sm:pl-3 ${isCompleted ? 'opacity-75' : ''}`}
+      className={`${styles.card} ${styles.hover} relative rounded shadow cursor-pointer transition-colors h-full flex flex-col pl-4 sm:pl-3 ${isCompleted ? 'opacity-75' : ''}`}
       onClick={() => onClick(session)}
     >
       {/* Favorite button */}
@@ -61,7 +61,7 @@ export default function SessionCard({
       
       {/* Speaker info */}
       {session.speaker && (
-        <div className="text-neutral-text-primary mt-1 text-xs sm:text-sm">
+        <div className="text-neutral-text-primary mt-1 mb-4 text-xs sm:text-sm">
           {session.speaker}
         </div>
       )}

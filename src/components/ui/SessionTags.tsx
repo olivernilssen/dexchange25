@@ -11,7 +11,7 @@ export default function SessionTags({ tags, className = '' }: SessionTagsProps) 
   return (
     <div className={`flex flex-wrap gap-1 ${className}`}>
       {tags.split(',').map((tag: string, i: number) => (
-        <span key={i} className={`inline-block px-2 py-0.5 text-xs rounded-full ${getTagColor(tag.trim())}`}>
+        <span key={i} className={`inline-flex px-2 py-0.5 text-xs rounded-md text-neutral-black ${getTagColor(tag.trim())}`}>
           {tag.trim()}
         </span>
       ))}

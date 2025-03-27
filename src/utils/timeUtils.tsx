@@ -88,39 +88,39 @@ export function getTagColor(tagName: string): string {
   
   // Map tags to specific colors
   if (tag.includes('frontend')) {
-    return 'bg-[#8da9e4] text-[#081079]'; // Light blue
+    return 'border-2 border-[#8da9e4] text-[#081079]'; // Light blue
   } else if (tag.includes('teknologi')) {
-    return 'bg-[#b4d9a4] text-[#081079]'; // Light green
+    return 'border-2 border-[#b4d9a4] text-[#081079]'; // Light green
   } else if (tag.includes('k8s') || tag.includes('devops') || tag.includes('smud') || tag.includes('leveranse')) {
-    return 'bg-[#c3a8e1] text-[#081079]'; // Light purple
+    return 'border-2 border-[#c3a8e1] text-[#081079]'; // Light purple
   } else if (tag.includes('data') || tag.includes('sikkerhet') || tag.includes('ki')) {
-    return 'bg-[#f0d589] text-[#081079]'; // Light yellow 
+    return 'border-2 border-[#f0d589] text-[#081079]'; // Light yellow 
   } else if (tag.includes('qa')) {
-    return 'bg-[#f6a495] text-[#081079]'; // Light salmon
+    return 'border-2 border-[#f6a495] text-[#081079]'; // Light salmon
   } else if (tag.includes('sammarbeid') || tag.includes('produkt') || tag.includes('prosess')) {
-    return 'bg-[#89c7f0] text-[#081079]'; // Light sky blue
+    return 'border-2 border-[#89c7f0] text-[#081079]'; // Light sky blue
   } else if (tag.includes('utvikling')) {
-    return 'bg-[#a8e1d9] text-[#081079]'; // Light teal
+    return 'border-2 border-[#a8e1d9] text-[#081079]'; // Light teal
   } else if (tag.includes('innovasjon') || tag.includes('modernisering')) {
-    return 'bg-[#f4c4e0] text-[#081079]'; // Light pink
+    return 'border-2 border-[#f4c4e0] text-[#081079]'; // Light pink
   } else if (tag.includes('alle')) {
-    return 'bg-[#ffcba4] text-[#081079]'; // Light peach
+    return 'border-2 border-[#ffcba4] text-[#081079]'; // Light peach
   } else if (tag.includes('testing')) {
-    return 'bg-[#d2e0fb] text-[#081079]'; // Pale blue
+    return 'border-2 border-[#d2e0fb] text-[#081079]'; // Pale blue
   } else if (tag.includes('ekstern')) {
-    return 'bg-[#b8d8be] text-[#081079]'; // Soft green
+    return 'border-2 border-[#b8d8be] text-[#081079]'; // Soft green
   } else if (tag.includes('web')) {
-    return 'bg-[#dbc6eb] text-[#081079]'; // Lavender
+    return 'border-2 border-[#dbc6eb] text-[#081079]'; // Lavender
   } else if (tag.includes('design')) {
-    return 'bg-[#bfd0e0] text-[#081079]'; // Steel blue
+    return 'border-2 border-[#bfd0e0] text-[#081079]'; // Steel blue
   } else if (tag.includes('ytelse')) {
-    return 'bg-[#ffecb8] text-[#081079]'; // Pale yellow
+    return 'border-2 border-[#ffecb8] text-[#081079]'; // Pale yellow
   } else if (tag.includes('metode')) {
-    return 'bg-[#e0c3fc] text-[#081079]'; // Light violet
+    return 'border-2 border-[#e0c3fc] text-[#081079]'; // Light violet
   } else if (tag.includes('strategi')) {
-    return 'bg-[#c2e5d3] text-[#081079]'; // Mint green
+    return 'border-2 border-[#c2e5d3] text-[#081079]'; // Mint green
   }
   
   // Default color for other tags
-  return 'bg-[#b4bce3] text-[#081079]'; // Default light blue-grey
+  return 'border-2 border-[#b4bce3] text-[#081079]'; // Default light blue-grey
 }

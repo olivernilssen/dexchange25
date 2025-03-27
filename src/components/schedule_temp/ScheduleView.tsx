@@ -84,7 +84,7 @@ export default function ScheduleView({ scheduleData }: ScheduleViewProps) {
     const dayName = activeDay === 0 ? "Dag 1" : activeDay === 1 ? "Dag 2" : `Dag ${activeDay + 1}`;
     
     return (
-      <div className="border border-speech-light rounded-lg p-4 bg-neutral-card shadow">
+      <div className="border-4 border-primary-border rounded-lg p-5 bg-neutral-card shadow">
         <h2 className="text-xl font-bold text-primary-main mb-4">
           {dayName}
         </h2>

@@ -4,37 +4,37 @@
 export const SESSION_COLORS = {
   // Common/Felles sessions (yellow theme)
   common: {
-    border: 'border-[#f0b429]',
-    bg: 'bg-[#fffbf0]',
-    hoverBg: 'hover:bg-[#fff7e0]',
-    textColor: 'text-[#b88a00]',
-    badgeBg: 'bg-[#f0b429]',
-    badgeText: 'text-white',
+    border: 'border-common-main',
+    bg: 'bg-common-light/20',
+    hoverBg: 'hover:bg-common-hover',
+    textColor: 'text-common-text',
+    badgeBg: 'bg-common-main',
+    badgeText: 'text-neutral-text-primary',
   },
-  // Workshop sessions (red theme)
+  // Workshop sessions (coral theme)
   workshop: {
-    border: 'border-[#e05252]',
-    bg: 'bg-[#fff5f5]',
-    hoverBg: 'hover:bg-[#fff0f0]',
-    textColor: 'text-[#e05252]',
-    badgeBg: 'bg-[#e05252]',
+    border: 'border-workshop-main',
+    bg: 'bg-workshop-light/20',
+    hoverBg: 'hover:bg-workshop-hover',
+    textColor: 'text-workshop-text',
+    badgeBg: 'bg-workshop-main',
     badgeText: 'text-white',
   },
   // Talk/speech sessions (blue theme)
   speech: {
-    border: 'border-[#3949ab]',
-    bg: 'bg-[#f5f7ff]',
-    hoverBg: 'hover:bg-[#f0f2fa]',
-    textColor: 'text-[#3949ab]',
-    badgeBg: 'bg-[#3949ab]',
+    border: 'border-speech-main',
+    bg: 'bg-speech-light/20',
+    hoverBg: 'hover:bg-speech-hover',
+    textColor: 'text-speech-text',
+    badgeBg: 'bg-speech-main',
     badgeText: 'text-white',
   }
 };
 
 // Common button styles
 export const BUTTON_STYLES = {
-  primary: 'bg-[#081079] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#060d4d] transition-colors',
-  secondary: 'bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors',
+  primary: 'bg-primary-main text-white font-medium py-2 px-4 rounded-lg hover:bg-primary-dark transition-colors',
+  secondary: 'bg-palette-blue/20 text-primary-dark font-medium py-2 px-4 rounded-lg hover:bg-palette-blue/30 transition-colors',
 };
 
 // Standardize badge styles
@@ -60,8 +60,7 @@ export const CARD_STYLES = {
 
 // Room badge styling
 export const ROOM_BADGE_STYLES = {
-  container: 'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium',
-  // You can add more specific styles if needed
+  container: 'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-palette-purple/20 text-palette-purple',
 };
 
 // Common UI element styles

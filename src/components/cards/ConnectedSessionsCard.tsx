@@ -31,6 +31,7 @@ export default function ConnectedSessionsCard({
   const styles = getSessionCardStyles(isCommon, isWorkshop);
   
   return (
+    // Make the outer container use the full height
     <div className={`${styles.card} h-full flex flex-col pl-4 sm:pl-3`}>
       {/* Favorite star button in the top-right corner for the entire group */}
       <FavoriteButton 
@@ -39,8 +40,8 @@ export default function ConnectedSessionsCard({
         className="absolute top-2 right-2 z-10" 
       />
       
-      {/* Connected sessions */}
-      <div className="divide-y divide-dashed divide-gray-300">
+      {/* Connected sessions - make this div take full height */}
+      <div className="divide-y divide-dashed divide-neutral-border flex-grow flex flex-col">
         {sessions.map((session, index) => {
           const isLastSession = index === sessions.length - 1;
           
@@ -57,7 +58,8 @@ export default function ConnectedSessionsCard({
           return (
             <div 
               key={index}
-              className={`pt-3 ${isLastSession ? 'pb-4' : 'pb-3'} cursor-pointer ${styles.hover} transition-colors`}
+              // Make the last session grow to fill available space
+              className={`pt-3 ${isLastSession ? 'pb-4 flex-grow' : 'pb-3'} cursor-pointer ${styles.hover} transition-colors ${isLastSession ? 'flex flex-col' : ''}`}
               onClick={() => onClick(session)}
             >
               {/* Time and room info */}
@@ -89,10 +91,13 @@ export default function ConnectedSessionsCard({
               )}
               
               {/* Session tags */}
-              <div className="flex flex-wrap items-center gap-1 mt-2">
+              <div className="flex flex-wrap items-center gap-2 mt-2">
                 {session.kind && <SessionTypeBadge type={session.kind} />}
                 {session.tag && <SessionTags tags={session.tag} />}
               </div>
+              
+              {/* Add a spacer to fill remaining space for the last session */}
+              {isLastSession && <div className="flex-grow"></div>}
             </div>
           );
         })}

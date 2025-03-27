@@ -5,6 +5,7 @@ import ScheduleView from '../components/schedule_temp/ScheduleView';
 import { FavoritesProvider } from '../contexts/FavoritesContext';
 import yaml from 'js-yaml';
 import { ScheduleData } from '../types/schedule';
+import Footer from '@/components/common/Footer';
 
 export default function Home() {
   const [rawYaml, setRawYaml] = useState('');
@@ -57,12 +58,12 @@ export default function Home() {
   
   return (
     <FavoritesProvider>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-primary-background">
         <Header />
         
         <main className="container mx-auto px-4 py-8">
           {error ? (
-            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+            <div className="bg-status-errorLight border-l-4 border-status-error text-status-error p-4 mb-4">
               <p className="font-bold">Error</p>
               <p>{error}</p>
               <div className="mt-4">
@@ -74,7 +75,7 @@ export default function Home() {
                 </button>
                 
                 {yamlDebug && (
-                  <pre className="mt-2 text-xs bg-gray-800 text-white p-2 rounded overflow-auto max-h-60">
+                  <pre className="mt-2 text-xs bg-neutral-text-primary text-neutral-text-white p-2 rounded overflow-auto max-h-60">
                     {rawYaml ? rawYaml.substring(0, 1000) + "..." : "No YAML content"}
                   </pre>
                 )}
@@ -89,12 +90,7 @@ export default function Home() {
             <div>Loading...</div>
           )}
         </main>
-        
-        <footer className="bg-[#081079] text-white py-6 mt-12">
-          <div className="container mx-auto px-4 text-center">
-            <p>d:exchange 2025 - April 9-10, 2025</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </FavoritesProvider>
   );

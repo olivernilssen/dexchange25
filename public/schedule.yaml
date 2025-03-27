@@ -352,16 +352,19 @@ schedule:
       tracks:
         - room: Storsal 1
           sessions:
-            # - start: 2025-04-10T10:00
-            #   end: 2025-04-10T11:45
-            #   kind: workshop
-            #   teams: 
-            #   title: Sammen om en enklere hverdag
-            #   ingress: Dette er en kombinert WS og foredrag, som er en videreføring av strategiarbeidet og operasjonalisering av dette. 
-            #   description: |
-            #     Det er en mulighet for flere å kunne koble seg på og bidra med erfaringer og innspill. Vi former WS ut i fra hvor vi står etter Samkjøringsuka, så den kan omhandle alt fra visjonen, OKRs, strategiske valg mm - velkommen :)
-            #   speaker: Agnete Enga og Line Krauss-Larsen 
-            #   tag: strategi
+            - start: 2025-04-10T10:00
+              end: 2025-04-10T11:45
+              kind: workshop
+              teams: 
+              title: Hvordan lykkes med workshops som gir resultater?
+              ingress: I denne workshopen lærer du grunnleggende metode og teknikker for å arrangere workshops som skaper verdi (og ikke kaster bort deltagernes tid). 
+              description: |
+                I denne workshopen lærer du grunnleggende metode og teknikker for å arrangere workshops som skaper verdi (og ikke kaster bort deltagernes tid). 
+                Vi går gjennom hvordan du planlegger, forbereder og gjennomfører en god workshop, og det er lagt opptil noe presentasjon og mest øvelser.
+
+                Alle som deltar får med seg en bok
+              speaker: Linda Vik og Cathrine Aldorino
+              tag: samarbeid, prosess, Ekstern
             - start: 2025-04-10T12:30
               end: 2025-04-10T14:15
               kind: workshop
@@ -465,19 +468,6 @@ schedule:
             tag: qa, testing, ytelse
         - room: Salten
           sessions:
-          - start: 2025-04-10T10:00
-            end: 2025-04-10T11:45
-            kind: workshop
-            teams: 
-            title: Hvordan lykkes med workshops som gir resultater?
-            ingress: I denne workshopen lærer du grunnleggende metode og teknikker for å arrangere workshops som skaper verdi (og ikke kaster bort deltagernes tid). 
-            description: |
-              I denne workshopen lærer du grunnleggende metode og teknikker for å arrangere workshops som skaper verdi (og ikke kaster bort deltagernes tid). 
-              Vi går gjennom hvordan du planlegger, forbereder og gjennomfører en god workshop, og det er lagt opptil noe presentasjon og mest øvelser.
-
-              Alle som deltar får med seg en bok
-            speaker: Linda Vik og Cathrine Aldorino
-            tag: samarbeid, prosess, Ekstern
           - start: 2025-04-10T12:30
             end: 2025-04-10T14:15
             kind: workshop

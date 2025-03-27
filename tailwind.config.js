@@ -14,6 +14,8 @@ module.exports = {
           light: '#3949ab',
           dark: '#060d4d',
           contrast: '#ffffff',
+          background: '#ffffff',
+          border: '#e5e7eb',
         },
         
         // Session type colors
@@ -35,6 +37,7 @@ module.exports = {
         
         common: {
           main: '#f0b429',
+          dark: '#F5AD6C',
           light: '#fffbf0',
           hover: '#fff7e0',
           text: '#b88a00',
@@ -92,15 +95,20 @@ module.exports = {
             secondary: '#666666',
             white: '#ffffff',
           },
+          black: '#000000',
           border: '#e5e7eb',
         },
         
         // Status colors
         status: {
           success: '#34d399',
+          successLight: '#ecfdf5',
           warning: '#fbbf24',
+          warningLight: '#fffbeb',
           error: '#ef4444',
+          errorLight: '#fde8e8',
           info: '#3b82f6',
+          infoLight: '#eff6ff',
         },
       },
     },

@@ -22,7 +22,7 @@ interface TimeBlockProps {
 // Define consistent room order for different days
 const ROOM_ORDER_BY_DAY: Record<number, string[]> = {
   0: ['Arena', 'Klasserom', 'Kantina', 'Landegode'], // Day 1
-  1: ['Storsalen', 'Storsal 1', 'Storsal 2', 'Storsal 3', 'The Social', 'Saltstraumen', 'Salten']  // Day 2
+  1: ['Storsalen', 'Storsal 1', 'Storsal 2', 'Storsal 3', 'The Social', 'Salten', 'Saltstraumen']  // Day 2
 };
 
 export default function TimeBlock({

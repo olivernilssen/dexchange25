@@ -17,7 +17,7 @@ export default function DayTabs({
 }: DayTabsProps) {
   return (
     <div className="mb-3">
-      <div className="flex border-b border-speech-light overflow-x-auto">
+      <div className="flex border-b border-primary-border overflow-x-auto">
         {/* Regular day tabs */}
         {days.map((day, index) => (
           <button
